@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drwup Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a { color: #fff; text-decoration: none; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      position: sticky;
+      top: 0;
+      background: #000;
+      z-index: 1000;
+    }
+
+    header img { height: 40px; }
+
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a:hover {
+      color: #ccc;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 0 5px #fff;
+      transition: all 0.3s ease;
+    }
+
+    #menu {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 32px;
+      background: rgba(0, 0, 0, 0.95);
+      padding: 20px 28px;
+      border-radius: 12px;
+      border: 1px solid #333;
+      box-shadow: 0 0 20px #ffffff15;
+      gap: 12px;
+    }
+
+    #banner video {
+      width: 100%;
+      height: 80vh;
+      object-fit: cover;
+    }
+
+    .section {
+      padding: 60px 32px;
+    }
+
+    .section h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      text-align: center;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 24px;
+      border-radius: 16px;
+      transition: 0.3s;
+      backdrop-filter: blur(10px);
+      border: 1px solid #333;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .logos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      padding-top: 20px;
+    }
+
+    .logos-grid img {
+      width: 100%;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .logos-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #fff;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    form input, form textarea {
+      padding: 12px;
+      background: #111;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 8px;
+    }
+
+    form button {
+      background: #fff;
+      color: #000;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 40px 32px;
+      background: #111;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    footer ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 0;
+    }
+
+    @media(max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+      #menu { display: none; } /* Initially hidden, toggled by JS */
+    }
+  </style>
+</head>
+<body>
+  <div data-section-type="drwup-home">
+    <header>
+      <a href="#banner" aria-label="Drwup Home">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo">
+      </a>
+      <nav class="desktop-menu" aria-label="Main navigation">
+        <a href="#services">Our Services</a>
+        <a href="#blogs">Blogs</a>
+        <a href="#logos">Logo Designs</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+      <div class="hamburger" role="button" aria-label="Toggle menu" tabindex="0" onclick="toggleMenu()" onkeydown="handleKeydown(event)">
+        <span></span><span></span><span></span>
+      </div>
+      <div id="menu" aria-label="Mobile navigation">
+        <a href="#services" onclick="toggleMenu()">Our Services</a>
+        <a href="#blogs" onclick="toggleMenu()">Blogs</a>
+        <a href="#logos" onclick="toggleMenu()">Logo Designs</a>
+        <a href="#contact" onclick="toggleMenu()">Contact Us</a>
+      </div>
+    </header>
+
+    <section id="banner" aria-label="Hero video">
+      <video src="https://cdn.shopify.com/videos/c/o/v/c0d11f7f1f3b42b091f1438082fc4aec.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    </section>
+
+    <section id="services" class="section">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Graphic Design</h3>
+          <p>Creating compelling visuals for digital and print media.</p>
+        </div>
+        <div class="service-card">
+          <h3>Print Collateral</h3>
+          <p>Designing brochures, flyers, packaging & more.</p>
+        </div>
+        <div class="service-card">
+          <h3>Motion Graphic</h3>
+          <p>Eye-catching animations and video graphics.</p>
+        </div>
+        <div class="service-card">
+          <h3>3D Videos</h3>
+          <p>High-end 3D product videos and modeling.</p>
+        </div>
+        <div class="service-card">
+          <h3>CGI Ads</h3>
+          <p>Hyper-real CGI visuals for impactful ads.</p>
+        </div>
+        <div class="service-card">
+          <h3>Website Design</h3>
+          <p>Responsive, creative websites that convert.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="blogs" class="section">
+      <h2>Blogs</h2>
+      <p style="text-align: center;">Coming soon...</p>
+    </section>
+
+    <section id="logos" class="section">
+      <h2>Logo Designs</h2>
+      <div class="logos-grid">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Untitled-1.jpg?v=1753858565" alt="Logo design 1">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/tezz_bite_Logo_Logo_mockup.png?v=1753858460" alt="Logo design 2">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Bird_Creator_Logo_concept-01.jpg?v=1753858456" alt="Logo design 3">
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact Us</h2>
+      <form onsubmit="redirectToWhatsApp(); return false;" aria-label="Contact form">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your Name" required aria-required="true">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Your Phone Number" required aria-required="true" pattern="[0-9]{10,}">
+        <label for="requirement">Your Requirement</label>
+        <textarea id="requirement" placeholder="Your Requirement" required aria-required="true"></textarea>
+        <button type="submit">Send via WhatsApp</button>
+      </form>
+    </section>
+
+    <footer>
+      <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" style="height: 32px;">
+      <ul>
+        <li><a href="#services">Our Services</a></li>
+        <li><a href="#blogs">Blogs</a></li>
+        <li><a href="#logos">Our Logos</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <div>
+        <p>All rights reserved. Drwup &copy; 2025</p>
+        <p>Proudly Made in India 🇮🇳</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function handleKeydown(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleMenu();
+      }
+    }
+
+    function redirectToWhatsApp() {
+      const name = document.querySelector('input[type="text"]').value;
+      const phone = document.querySelector('input[type="tel"]').value;
+      const requirement = document.querySelector('textarea').value;
+      const message = `Name: ${name}%0APhone: ${phone}%0ARequirement: ${requirement}`;
+      window.open(`https://wa.me/919987876738?text=${message}`, '_blank');
+    }
+  </script>
+</body>
+</html>
