@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Drwup Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet"> <!-- Using Roboto Medium as substitute -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- GSAP CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -106,9 +106,21 @@
 
     .section-title {
       text-align: center;
-      font-size: 36px;
-      font-weight: 600;
+      font-size: 56px;
+      font-weight: 700;
       margin-bottom: 60px;
+      color: #00f0ff;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+      opacity: 0;
+      transform: translateY(50px) scale(0.8);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     .services-table {
@@ -187,24 +199,99 @@
       box-shadow: 0 0 10px #fff;
     }
 
-    #lets-talk {
-      width: 100%;
-      padding: 100px 0;
-      background: rgba(0, 0, 0, 0.8);
+    /* Connect Section Styles */
+    #connect {
+      background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
       text-align: center;
-      color: #fff;
-      font-size: 200px;
-      font-weight: 500;
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      font-family: 'Roboto', sans-serif; /* Temporary substitute */
-      letter-spacing: 5px;
-      text-transform: none;
+      padding: 100px 32px;
     }
 
-    #lets-talk.visible {
-      opacity: 1;
+    .connect-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .connect-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 200px;
+      padding: 16px 24px;
+      background: #222;
+      border: 2px solid #333;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      opacity: 0;
+    }
+
+    .connect-button:hover {
+      transform: translateY(-10px) scale(1.05);
+      border-color: #00f0ff;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.7), 0 0 5px rgba(0, 240, 255, 0.3) inset;
+      background: #2a2a2a;
+    }
+
+    .connect-button span {
+      font-size: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .connect-button:hover span {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .banner-overlay {
+        padding: 10px 20px;
+        width: calc(100% - 40px);
+      }
+      nav { display: none; }
+      .hamburger { display: flex; }
+      #menu { 
+        display: none;
+        right: 20px;
+        top: 60px;
+        min-width: 120px;
+        max-width: 180px;
+        padding: 15px 20px;
+      }
+      #banner {
+        height: 60vh;
+      }
+      #banner video {
+        object-fit: cover;
+      }
+      .services-table {
+        grid-template-columns: 1fr;
+      }
+      .table-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 20px #00f0ff, 0 0 5px #00f0ff inset;
+      }
+      .section-title {
+        font-size: 36px;
+        letter-spacing: 1px;
+      }
+      .connect-buttons {
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+      }
+      .connect-button {
+        width: 180px;
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+      .connect-button span {
+        font-size: 20px;
+      }
     }
 
     footer {
@@ -242,48 +329,6 @@
     @media (pointer: coarse) {
       body { cursor: auto; }
       .custom-cursor { display: none; }
-    }
-
-    @media(max-width: 768px) {
-      .banner-overlay {
-        padding: 10px 20px;
-        width: calc(100% - 40px);
-      }
-      nav { display: none; }
-      .hamburger { display: flex; }
-      #menu { 
-        display: none;
-        right: 20px;
-        top: 60px;
-        min-width: 120px;
-        max-width: 180px;
-        padding: 15px 20px;
-      }
-      #banner {
-        height: 60vh;
-      }
-      #banner video {
-        object-fit: cover;
-      }
-      .services-table {
-        grid-template-columns: 1fr;
-      }
-      .table-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 20px #00f0ff, 0 0 5px #00f0ff inset;
-      }
-      #lets-talk {
-        font-size: 60px; /* Reduced for better visibility */
-        padding: 40px 20px; /* Adjusted padding */
-        width: 100%;
-        text-align: center;
-        white-space: normal; /* Allow text to wrap */
-        overflow: visible; /* Ensure no truncation */
-        text-overflow: clip; /* Remove ellipsis */
-        font-family: 'Roboto', sans-serif; /* Temporary substitute */
-        letter-spacing: 2px;
-        text-transform: none;
-      }
     }
 
     /* Screen reader only */
@@ -370,7 +415,21 @@
       </div>
     </section>
 
-    <div id="lets-talk" onclick="redirectToWhatsApp()">Let's talk</div>
+    <section id="connect" class="section" aria-label="Contact options">
+      <h2 class="section-title">Hop into the Cab?</h2>
+      <div class="connect-buttons">
+        <a href="mailto:hello@drwup.com" class="connect-button" aria-label="Send an email to Drwup">
+          <span>📧</span> Email
+        </a>
+        <a href="tel:+919987876738" class="connect-button" aria-label="Call Drwup">
+          <span>📞</span> Phone
+        </a>
+        <a href="https://wa.me/919987876738" target="_blank" class="connect-button" aria-label="Message Drwup on WhatsApp">
+          <span>💬</span> WhatsApp
+        </a>
+      </div>
+    </section>
+
     <footer>
       <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" style="height: 32px;" loading="lazy">
       <ul>
@@ -400,15 +459,6 @@
       }
     }
 
-    function redirectToWhatsApp() {
-      try {
-        window.open('https://wa.me/919987876738', '_blank');
-      } catch (error) {
-        console.error('Error redirecting to WhatsApp:', error);
-        alert('An error occurred. Please try again.');
-      }
-    }
-
     // Custom cursor
     const cursor = document.querySelector('.custom-cursor');
     document.addEventListener('mousemove', (e) => {
@@ -416,19 +466,23 @@
       cursor.style.top = e.clientY + 'px';
     });
 
-    const hoverables = document.querySelectorAll('a, button, .table-card, #lets-talk');
+    const hoverables = document.querySelectorAll('a, button, .table-card, .connect-button');
     hoverables.forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursor.style.background = 'rgba(0, 240, 255, 0.3)';
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.style.background = 'rgba(255, 255, 255, 0.2)';
       });
     });
 
-    // Highly Animated Services Section
+    // GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
-    const tl = gsap.timeline({
+
+    // Services Section Animation
+    const servicesTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.services-table',
         start: "top 80%",
@@ -437,7 +491,7 @@
       }
     });
     gsap.utils.toArray('.table-card').forEach((card, i) => {
-      tl.fromTo(card, {
+      servicesTl.fromTo(card, {
         opacity: 0,
         y: 100,
         scale: 0.5,
@@ -457,7 +511,58 @@
       }, i * 0.3);
     });
 
-    // Fallback to show cards if GSAP fails
+    // Connect Section Title Animation
+    const connectTitleTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#connect',
+        start: "top 80%",
+        toggleActions: "play none none none",
+        markers: false
+      }
+    });
+    connectTitleTl.fromTo('.section-title', {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      rotation: 5
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotation: 0,
+      duration: 1,
+      ease: "elastic.out(1, 0.7)",
+      textShadow: "0 0 15px rgba(0, 240, 255, 0.7)"
+    });
+
+    // Connect Buttons Animation
+    const connectButtonsTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.connect-buttons',
+        start: "top 80%",
+        toggleActions: "play none none none",
+        markers: false
+      }
+    });
+    gsap.utils.toArray('.connect-button').forEach((button, i) => {
+      connectButtonsTl.fromTo(button, {
+        opacity: 0,
+        y: 50,
+        scale: 0.8,
+        rotation: i % 2 === 0 ? -10 : 10
+      }, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotation: 0,
+        duration: 0.8,
+        ease: "bounce.out",
+        boxShadow: "0 0 10px rgba(0, 240, 255, 0.5)",
+        delay: i * 0.2
+      }, i * 0.2);
+    });
+
+    // Fallback to show cards, buttons, and titles if GSAP fails
     document.addEventListener('DOMContentLoaded', () => {
       gsap.utils.toArray('.table-card').forEach(card => {
         if (card.style.opacity === '0') {
@@ -467,13 +572,21 @@
           card.style.boxShadow = '0 10px 20px rgba(0, 240, 255, 0.3)';
         }
       });
+      gsap.utils.toArray('.connect-button').forEach(button => {
+        if (button.style.opacity === '0') {
+          button.style.opacity = '1';
+          button.style.transform = 'translateY(0) scale(1)';
+          button.style.boxShadow = '0 0 10px rgba(0, 240, 255, 0.5)';
+        }
+      });
+      gsap.utils.toArray('.section-title').forEach(title => {
+        if (title.style.opacity === '0') {
+          title.style.opacity = '1';
+          title.style.transform = 'translateY(0) scale(1)';
+          title.style.textShadow = '0 0 15px rgba(0, 240, 255, 0.7)';
+        }
+      });
     });
-
-    // Show "Let's Talk" after 5 seconds
-    setTimeout(() => {
-      const letsTalk = document.getElementById('lets-talk');
-      if (letsTalk) letsTalk.classList.add('visible');
-    }, 5000);
   </script>
 </body>
 </html>
