@@ -22,22 +22,27 @@
 
     a { color: #fff; text-decoration: none; }
 
-    header {
+    .banner-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: calc(100% - 100px); /* Dynamic width to avoid cropping */
+      padding: 16px 50px; /* Adjusted padding */
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 32px;
-      position: sticky;
-      top: 0;
-      background: transparent;
-      z-index: 1000;
+      z-index: 1001;
+      background: rgba(0, 0, 0, 0);
     }
 
-    header img { height: 40px; }
+    .banner-overlay img {
+      height: 40px;
+    }
 
     nav {
       display: flex;
       gap: 32px;
+      overflow: visible;
     }
 
     nav a:hover {
@@ -66,18 +71,28 @@
       flex-direction: column;
       position: absolute;
       top: 70px;
-      right: 32px;
+      right: 50px; /* Aligned with padding */
       background: rgba(0, 0, 0, 0.95);
       padding: 20px 28px;
       border-radius: 12px;
       border: 1px solid #333;
       box-shadow: 0 0 20px #ffffff15;
       gap: 12px;
+      z-index: 1002;
+      min-width: 180px;
+      max-width: 250px;
+    }
+
+    #banner {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: visible;
     }
 
     #banner video {
       width: 100%;
-      height: 80vh;
+      height: 100%;
       object-fit: cover;
     }
 
@@ -206,9 +221,17 @@
     }
 
     @media(max-width: 768px) {
+      .banner-overlay {
+        padding: 16px 30px;
+      }
       nav { display: none; }
       .hamburger { display: flex; }
-      #menu { display: none; }
+      #menu { 
+        display: none;
+        right: 30px;
+        min-width: 140px;
+        max-width: 200px;
+      }
       .services-table {
         grid-template-columns: 1fr;
       }
@@ -235,7 +258,7 @@
   <div data-section-type="drwup-home">
     <div class="custom-cursor"></div>
 
-    <header>
+    <div class="banner-overlay">
       <a href="#banner" aria-label="Drwup Home">
         <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" loading="lazy">
       </a>
@@ -250,7 +273,7 @@
         <a href="#services" onclick="toggleMenu()">Our Services</a>
         <a href="#logos" onclick="toggleMenu()">Logo Designs</a>
       </div>
-    </header>
+    </div>
 
     <section id="banner" aria-label="Hero video">
       <video src="https://cdn.shopify.com/videos/c/o/v/c0d11f7f1f3b42b091f1438082fc4aec.mp4" autoplay muted loop playsinline preload="metadata" aria-describedby="banner-desc"></video>
@@ -396,6 +419,3 @@
   </script>
 </body>
 </html>
-
-
-
