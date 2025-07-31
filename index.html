@@ -198,12 +198,9 @@
       cursor: pointer;
       opacity: 0;
       transition: opacity 0.5s ease;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       font-family: 'Roboto', sans-serif; /* Temporary substitute */
       letter-spacing: 5px;
-      text-transform: none; /* Removed uppercase */
+      text-transform: none;
     }
 
     #lets-talk.visible {
@@ -276,14 +273,16 @@
         box-shadow: 0 0 20px #00f0ff, 0 0 5px #00f0ff inset;
       }
       #lets-talk {
-        font-size: 80px;
-        padding: 50px 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: 60px; /* Reduced for better visibility */
+        padding: 40px 20px; /* Adjusted padding */
+        width: 100%;
+        text-align: center;
+        white-space: normal; /* Allow text to wrap */
+        overflow: visible; /* Ensure no truncation */
+        text-overflow: clip; /* Remove ellipsis */
         font-family: 'Roboto', sans-serif; /* Temporary substitute */
         letter-spacing: 2px;
-        text-transform: none; /* Removed uppercase */
+        text-transform: none;
       }
     }
 
@@ -371,7 +370,7 @@
       </div>
     </section>
 
-    <div id="lets-talk" onclick="redirectToWhatsApp()">Let's talk</div> <!-- Updated to "Let's talk" with only first letter capitalized -->
+    <div id="lets-talk" onclick="redirectToWhatsApp()">Let's talk</div>
     <footer>
       <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" style="height: 32px;" loading="lazy">
       <ul>
