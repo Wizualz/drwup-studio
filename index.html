@@ -151,30 +151,28 @@
       box-shadow: 0 0 10px #fff;
     }
 
-    form {
+    #lets-talk {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
       display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 500px;
-      margin: auto;
-    }
-
-    form input, form textarea {
-      padding: 12px;
-      background: #111;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
       color: #fff;
-      border: 1px solid #333;
-      border-radius: 8px;
+      font-size: 120px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    form button {
-      background: #fff;
-      color: #000;
-      padding: 12px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
+    #lets-talk.visible {
+      opacity: 1;
     }
 
     footer {
@@ -221,6 +219,9 @@
       .services-table {
         grid-template-columns: 1fr;
       }
+      #lets-talk {
+        font-size: 60px;
+      }
     }
 
     /* Screen reader only */
@@ -247,7 +248,6 @@
       <nav class="desktop-menu" aria-label="Main navigation">
         <a href="#services">Our Services</a>
         <a href="#logos">Logo Designs</a>
-        <a href="#contact">Contact Us</a>
       </nav>
       <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu" tabindex="0" onclick="toggleMenu()" onkeydown="handleKeydown(event)">
         <span></span><span></span><span></span>
@@ -255,7 +255,6 @@
       <div id="menu" aria-label="Mobile navigation" role="navigation">
         <a href="#services" onclick="toggleMenu()">Our Services</a>
         <a href="#logos" onclick="toggleMenu()">Logo Designs</a>
-        <a href="#contact" onclick="toggleMenu()">Contact Us</a>
       </div>
     </header>
 
@@ -309,25 +308,13 @@
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2 class="section-title">Contact Us</h2>
-      <form onsubmit="redirectToWhatsApp(); return false;" aria-label="Contact form">
-        <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Your Name" required>
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="Your Phone Number" required pattern="[0-9]{10,}">
-        <label for="requirement">Your Requirement</label>
-        <textarea id="requirement" placeholder="Your Requirement" required></textarea>
-        <button type="submit">Send via WhatsApp</button>
-      </form>
-    </section>
+    <div id="lets-talk" onclick="redirectToWhatsApp()">Let's Talk</div>
 
     <footer>
       <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" style="height: 32px;" loading="lazy">
       <ul>
         <li><a href="#services">Our Services</a></li>
         <li><a href="#logos">Our Logos</a></li>
-        <li><a href="#contact">Contact Us</a></li>
       </ul>
       <div>
         <p>All rights reserved. Drwup &copy; 2025</p>
@@ -354,15 +341,7 @@
 
     function redirectToWhatsApp() {
       try {
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const requirement = document.getElementById('requirement').value.trim();
-        if (!name || !phone || !requirement) {
-          alert('Please fill out all fields.');
-          return;
-        }
-        const message = `Name: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ARequirement: ${encodeURIComponent(requirement)}`;
-        window.open(`https://wa.me/919987876738?text=${message}`, '_blank');
+        window.open('https://wa.me/919987876738', '_blank');
       } catch (error) {
         console.error('Error redirecting to WhatsApp:', error);
         alert('An error occurred. Please try again.');
@@ -376,7 +355,7 @@
       cursor.style.top = e.clientY + 'px';
     });
 
-    const hoverables = document.querySelectorAll('a, button, .table-card');
+    const hoverables = document.querySelectorAll('a, button, .table-card, #lets-talk');
     hoverables.forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
@@ -412,6 +391,11 @@
         card.style.opacity = 1;
       });
     });
+
+    // Show "Let's Talk" overlay after 5 seconds
+    setTimeout(() => {
+      document.getElementById('lets-talk').classList.add('visible');
+    }, 5000);
   </script>
 </body>
 </html>
