@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Drwup Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -95,6 +100,7 @@
     }
 
     .table-card {
+      opacity: 0;
       background: rgba(255,255,255,0.05);
       border: 1px solid #2e2e2e;
       border-radius: 16px;
@@ -232,40 +238,15 @@
       <video src="https://cdn.shopify.com/videos/c/o/v/c0d11f7f1f3b42b091f1438082fc4aec.mp4" autoplay muted loop playsinline preload="metadata"></video>
     </section>
 
-    <!-- Updated Services Section -->
     <section id="services" class="section">
       <h2 class="section-title">What I Bring to the Table</h2>
       <div class="services-table">
-        <div class="table-card">
-          <span>🎨</span>
-          <h3>Graphic Design</h3>
-          <p>Compelling visuals for brands across digital & print.</p>
-        </div>
-        <div class="table-card">
-          <span>🖨️</span>
-          <h3>Print Collateral</h3>
-          <p>Designs for brochures, flyers, packaging & more.</p>
-        </div>
-        <div class="table-card">
-          <span>🎞️</span>
-          <h3>Motion Graphics</h3>
-          <p>Eye-catching animations & explainer videos.</p>
-        </div>
-        <div class="table-card">
-          <span>🌀</span>
-          <h3>3D Videos</h3>
-          <p>Product renders, modeling, and full 3D animations.</p>
-        </div>
-        <div class="table-card">
-          <span>🔥</span>
-          <h3>CGI Ads</h3>
-          <p>Hyper-real visuals for maximum ad impact.</p>
-        </div>
-        <div class="table-card">
-          <span>💻</span>
-          <h3>Website Design</h3>
-          <p>Creative, responsive websites that convert.</p>
-        </div>
+        <div class="table-card"><span>🎨</span><h3>Graphic Design</h3><p>Compelling visuals for brands across digital & print.</p></div>
+        <div class="table-card"><span>🖨️</span><h3>Print Collateral</h3><p>Designs for brochures, flyers, packaging & more.</p></div>
+        <div class="table-card"><span>🎞️</span><h3>Motion Graphics</h3><p>Eye-catching animations & explainer videos.</p></div>
+        <div class="table-card"><span>🌀</span><h3>3D Videos</h3><p>Product renders, modeling, and full 3D animations.</p></div>
+        <div class="table-card"><span>🔥</span><h3>CGI Ads</h3><p>Hyper-real visuals for maximum ad impact.</p></div>
+        <div class="table-card"><span>💻</span><h3>Website Design</h3><p>Creative, responsive websites that convert.</p></div>
       </div>
     </section>
 
@@ -332,7 +313,7 @@
       window.open(`https://wa.me/919987876738?text=${message}`, '_blank');
     }
 
-    // Custom cursor movement
+    // Custom cursor
     const cursor = document.querySelector('.custom-cursor');
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.clientX + 'px';
@@ -348,7 +329,24 @@
         cursor.style.transform = 'translate(-50%, -50%) scale(1)';
       });
     });
+
+    // GSAP Services Animation
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.table-card').forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 50,
+        duration: 0.6,
+        delay: i * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
   </script>
 </body>
 </html>
+
 
