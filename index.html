@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Drwup Homepage</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -12,6 +12,7 @@
       background: #0a0a0a;
       color: #fff;
       overflow-x: hidden;
+      cursor: none;
     }
 
     a { color: #fff; text-decoration: none; }
@@ -76,34 +77,43 @@
     }
 
     .section {
-      padding: 60px 32px;
+      padding: 80px 32px;
     }
 
-    .section h2 {
-      font-size: 32px;
-      margin-bottom: 40px;
+    .section-title {
       text-align: center;
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 60px;
     }
 
-    .services-grid {
+    .services-table {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      text-align: center;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      padding: 0 20px;
     }
 
-    .service-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 24px;
+    .table-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #2e2e2e;
       border-radius: 16px;
-      transition: 0.3s;
+      padding: 32px 20px;
+      text-align: center;
       backdrop-filter: blur(10px);
-      border: 1px solid #333;
+      transition: 0.4s ease;
+      box-shadow: 0 0 0 transparent;
     }
 
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 10px #fff;
+    .table-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 16px #ffffff22;
+    }
+
+    .table-card span {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: inline-block;
     }
 
     .logos-grid {
@@ -168,15 +178,35 @@
       padding: 0;
     }
 
+    /* Custom Cursor */
+    .custom-cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      position: fixed;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, background-color 0.2s;
+      mix-blend-mode: difference;
+    }
+
+    body:hover .custom-cursor {
+      background-color: #fff;
+    }
+
     @media(max-width: 768px) {
       nav { display: none; }
       .hamburger { display: flex; }
-      #menu { display: none; } /* Initially hidden, toggled by JS */
+      #menu { display: none; }
     }
   </style>
 </head>
 <body>
   <div data-section-type="drwup-home">
+    <div class="custom-cursor"></div>
+
     <header>
       <a href="#banner" aria-label="Drwup Home">
         <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo">
@@ -202,43 +232,50 @@
       <video src="https://cdn.shopify.com/videos/c/o/v/c0d11f7f1f3b42b091f1438082fc4aec.mp4" autoplay muted loop playsinline preload="metadata"></video>
     </section>
 
+    <!-- Updated Services Section -->
     <section id="services" class="section">
-      <h2>Our Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
+      <h2 class="section-title">What I Bring to the Table</h2>
+      <div class="services-table">
+        <div class="table-card">
+          <span>🎨</span>
           <h3>Graphic Design</h3>
-          <p>Creating compelling visuals for digital and print media.</p>
+          <p>Compelling visuals for brands across digital & print.</p>
         </div>
-        <div class="service-card">
+        <div class="table-card">
+          <span>🖨️</span>
           <h3>Print Collateral</h3>
-          <p>Designing brochures, flyers, packaging & more.</p>
+          <p>Designs for brochures, flyers, packaging & more.</p>
         </div>
-        <div class="service-card">
-          <h3>Motion Graphic</h3>
-          <p>Eye-catching animations and video graphics.</p>
+        <div class="table-card">
+          <span>🎞️</span>
+          <h3>Motion Graphics</h3>
+          <p>Eye-catching animations & explainer videos.</p>
         </div>
-        <div class="service-card">
+        <div class="table-card">
+          <span>🌀</span>
           <h3>3D Videos</h3>
-          <p>High-end 3D product videos and modeling.</p>
+          <p>Product renders, modeling, and full 3D animations.</p>
         </div>
-        <div class="service-card">
+        <div class="table-card">
+          <span>🔥</span>
           <h3>CGI Ads</h3>
-          <p>Hyper-real CGI visuals for impactful ads.</p>
+          <p>Hyper-real visuals for maximum ad impact.</p>
         </div>
-        <div class="service-card">
+        <div class="table-card">
+          <span>💻</span>
           <h3>Website Design</h3>
-          <p>Responsive, creative websites that convert.</p>
+          <p>Creative, responsive websites that convert.</p>
         </div>
       </div>
     </section>
 
     <section id="blogs" class="section">
-      <h2>Blogs</h2>
+      <h2 class="section-title">Blogs</h2>
       <p style="text-align: center;">Coming soon...</p>
     </section>
 
     <section id="logos" class="section">
-      <h2>Logo Designs</h2>
+      <h2 class="section-title">Logo Designs</h2>
       <div class="logos-grid">
         <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Untitled-1.jpg?v=1753858565" alt="Logo design 1">
         <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/tezz_bite_Logo_Logo_mockup.png?v=1753858460" alt="Logo design 2">
@@ -247,14 +284,14 @@
     </section>
 
     <section id="contact" class="section">
-      <h2>Contact Us</h2>
+      <h2 class="section-title">Contact Us</h2>
       <form onsubmit="redirectToWhatsApp(); return false;" aria-label="Contact form">
         <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Your Name" required aria-required="true">
+        <input type="text" id="name" placeholder="Your Name" required>
         <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="Your Phone Number" required aria-required="true" pattern="[0-9]{10,}">
+        <input type="tel" id="phone" placeholder="Your Phone Number" required pattern="[0-9]{10,}">
         <label for="requirement">Your Requirement</label>
-        <textarea id="requirement" placeholder="Your Requirement" required aria-required="true"></textarea>
+        <textarea id="requirement" placeholder="Your Requirement" required></textarea>
         <button type="submit">Send via WhatsApp</button>
       </form>
     </section>
@@ -288,12 +325,30 @@
     }
 
     function redirectToWhatsApp() {
-      const name = document.querySelector('input[type="text"]').value;
-      const phone = document.querySelector('input[type="tel"]').value;
-      const requirement = document.querySelector('textarea').value;
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const requirement = document.getElementById('requirement').value;
       const message = `Name: ${name}%0APhone: ${phone}%0ARequirement: ${requirement}`;
       window.open(`https://wa.me/919987876738?text=${message}`, '_blank');
     }
+
+    // Custom cursor movement
+    const cursor = document.querySelector('.custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    const hoverables = document.querySelectorAll('a, button, .table-card');
+    hoverables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      });
+    });
   </script>
 </body>
 </html>
+
