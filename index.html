@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- GSAP CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <style>
     body {
@@ -94,32 +94,43 @@
 
     .services-table {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
       padding: 0 20px;
+      min-height: 200px;
     }
 
     .table-card {
-      opacity: 0;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #2e2e2e;
-      border-radius: 16px;
-      padding: 32px 20px;
+      background: #151515;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 40px 20px;
       text-align: center;
-      backdrop-filter: blur(10px);
-      transition: 0.4s ease;
-      box-shadow: 0 0 0 transparent;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 1;
     }
 
     .table-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 0 16px #ffffff22;
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00f0ff;
     }
 
     .table-card span {
-      font-size: 32px;
-      margin-bottom: 16px;
+      font-size: 48px;
+      margin-bottom: 20px;
       display: inline-block;
+    }
+
+    .table-card h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+
+    .table-card p {
+      font-size: 16px;
+      color: #cccccc;
+      margin: 0;
     }
 
     .logos-grid {
@@ -186,26 +197,42 @@
 
     /* Custom Cursor */
     .custom-cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #fff;
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       position: fixed;
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 9999;
-      transition: transform 0.15s ease, background-color 0.2s;
+      transition: transform 0.2s ease;
       mix-blend-mode: difference;
     }
 
-    body:hover .custom-cursor {
-      background-color: #fff;
+    @media (pointer: coarse) {
+      body { cursor: auto; }
+      .custom-cursor { display: none; }
     }
 
     @media(max-width: 768px) {
       nav { display: none; }
       .hamburger { display: flex; }
       #menu { display: none; }
+      .services-table {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Screen reader only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
   </style>
 </head>
@@ -215,52 +242,70 @@
 
     <header>
       <a href="#banner" aria-label="Drwup Home">
-        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" loading="lazy">
       </a>
       <nav class="desktop-menu" aria-label="Main navigation">
         <a href="#services">Our Services</a>
-        <a href="#blogs">Blogs</a>
         <a href="#logos">Logo Designs</a>
         <a href="#contact">Contact Us</a>
       </nav>
-      <div class="hamburger" role="button" aria-label="Toggle menu" tabindex="0" onclick="toggleMenu()" onkeydown="handleKeydown(event)">
+      <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu" tabindex="0" onclick="toggleMenu()" onkeydown="handleKeydown(event)">
         <span></span><span></span><span></span>
       </div>
-      <div id="menu" aria-label="Mobile navigation">
+      <div id="menu" aria-label="Mobile navigation" role="navigation">
         <a href="#services" onclick="toggleMenu()">Our Services</a>
-        <a href="#blogs" onclick="toggleMenu()">Blogs</a>
         <a href="#logos" onclick="toggleMenu()">Logo Designs</a>
         <a href="#contact" onclick="toggleMenu()">Contact Us</a>
       </div>
     </header>
 
     <section id="banner" aria-label="Hero video">
-      <video src="https://cdn.shopify.com/videos/c/o/v/c0d11f7f1f3b42b091f1438082fc4aec.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      <video src="https://cdn.shopify.com/videos/c/o/v/c0d11f7f1f3b42b091f1438082fc4aec.mp4" autoplay muted loop playsinline preload="metadata" aria-describedby="banner-desc"></video>
+      <p id="banner-desc" class="sr-only">Promotional video showcasing Drwup's design services.</p>
     </section>
 
     <section id="services" class="section">
       <h2 class="section-title">What I Bring to the Table</h2>
       <div class="services-table">
-        <div class="table-card"><span>🎨</span><h3>Graphic Design</h3><p>Compelling visuals for brands across digital & print.</p></div>
-        <div class="table-card"><span>🖨️</span><h3>Print Collateral</h3><p>Designs for brochures, flyers, packaging & more.</p></div>
-        <div class="table-card"><span>🎞️</span><h3>Motion Graphics</h3><p>Eye-catching animations & explainer videos.</p></div>
-        <div class="table-card"><span>🌀</span><h3>3D Videos</h3><p>Product renders, modeling, and full 3D animations.</p></div>
-        <div class="table-card"><span>🔥</span><h3>CGI Ads</h3><p>Hyper-real visuals for maximum ad impact.</p></div>
-        <div class="table-card"><span>💻</span><h3>Website Design</h3><p>Creative, responsive websites that convert.</p></div>
+        <div class="table-card">
+          <span>🎨</span>
+          <h3>Graphic Design</h3>
+          <p>Compelling visuals for brands across digital & print.</p>
+        </div>
+        <div class="table-card">
+          <span>🖨️</span>
+          <h3>Print Collateral</h3>
+          <p>Designs for brochures, flyers, packaging & more.</p>
+        </div>
+        <div class="table-card">
+          <span>🎞️</span>
+          <h3>Motion Graphics</h3>
+          <p>Eye-catching animations & explainer videos.</p>
+        </div>
+        <div class="table-card">
+          <span>🌀</span>
+          <h3>3D Videos</h3>
+          <p>Product renders, modeling, and full 3D animations.</p>
+        </div>
+        <div class="table-card">
+          <span>🔥</span>
+          <h3>CGI Ads</h3>
+          <p>Hyper-real visuals for maximum ad impact.</p>
+        </div>
+        <div class="table-card">
+          <span>💻</span>
+          <h3>Website Design</h3>
+          <p>Creative, responsive websites that convert.</p>
+        </div>
       </div>
-    </section>
-
-    <section id="blogs" class="section">
-      <h2 class="section-title">Blogs</h2>
-      <p style="text-align: center;">Coming soon...</p>
     </section>
 
     <section id="logos" class="section">
       <h2 class="section-title">Logo Designs</h2>
       <div class="logos-grid">
-        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Untitled-1.jpg?v=1753858565" alt="Logo design 1">
-        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/tezz_bite_Logo_Logo_mockup.png?v=1753858460" alt="Logo design 2">
-        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Bird_Creator_Logo_concept-01.jpg?v=1753858456" alt="Logo design 3">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Untitled-1.jpg?v=1753858565" alt="Logo design 1" loading="lazy">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/tezz_bite_Logo_Logo_mockup.png?v=1753858460" alt="Logo design 2" loading="lazy">
+        <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Bird_Creator_Logo_concept-01.jpg?v=1753858456" alt="Logo design 3" loading="lazy">
       </div>
     </section>
 
@@ -278,10 +323,9 @@
     </section>
 
     <footer>
-      <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" style="height: 32px;">
+      <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/white.png?v=1753857144" alt="Drwup Logo" style="height: 32px;" loading="lazy">
       <ul>
         <li><a href="#services">Our Services</a></li>
-        <li><a href="#blogs">Blogs</a></li>
         <li><a href="#logos">Our Logos</a></li>
         <li><a href="#contact">Contact Us</a></li>
       </ul>
@@ -295,7 +339,10 @@
   <script>
     function toggleMenu() {
       const menu = document.getElementById('menu');
-      menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+      const hamburger = document.querySelector('.hamburger');
+      const isExpanded = menu.style.display === 'flex';
+      menu.style.display = isExpanded ? 'none' : 'flex';
+      hamburger.setAttribute('aria-expanded', !isExpanded);
     }
 
     function handleKeydown(event) {
@@ -306,11 +353,20 @@
     }
 
     function redirectToWhatsApp() {
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const requirement = document.getElementById('requirement').value;
-      const message = `Name: ${name}%0APhone: ${phone}%0ARequirement: ${requirement}`;
-      window.open(`https://wa.me/919987876738?text=${message}`, '_blank');
+      try {
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const requirement = document.getElementById('requirement').value.trim();
+        if (!name || !phone || !requirement) {
+          alert('Please fill out all fields.');
+          return;
+        }
+        const message = `Name: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ARequirement: ${encodeURIComponent(requirement)}`;
+        window.open(`https://wa.me/919987876738?text=${message}`, '_blank');
+      } catch (error) {
+        console.error('Error redirecting to WhatsApp:', error);
+        alert('An error occurred. Please try again.');
+      }
     }
 
     // Custom cursor
@@ -323,7 +379,7 @@
     const hoverables = document.querySelectorAll('a, button, .table-card');
     hoverables.forEach(el => {
       el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -333,20 +389,32 @@
     // GSAP Services Animation
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('.table-card').forEach((card, i) => {
-      gsap.from(card, {
+      gsap.fromTo(card, {
         opacity: 0,
-        y: 50,
+        y: 50
+      }, {
+        opacity: 1,
+        y: 0,
         duration: 0.6,
         delay: i * 0.1,
         scrollTrigger: {
           trigger: card,
-          start: "top 85%",
-          toggleActions: "play none none reverse"
+          start: "top 90%",
+          toggleActions: "play none none none",
+          markers: false
         }
+      });
+    });
+
+    // Fallback to show cards if GSAP fails
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.utils.toArray('.table-card').forEach(card => {
+        card.style.opacity = 1;
       });
     });
   </script>
 </body>
 </html>
+
 
 
