@@ -320,14 +320,15 @@
         object-fit: cover;
       }
       .services-table {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
       }
       .table-card:hover {
         transform: translateY(-8px) scale(1.03);
         box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
       }
       .logos-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 16px;
       }
       .logos-grid img:hover {
@@ -335,7 +336,7 @@
         box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
       }
       .work-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 16px;
         padding: 0 10px;
       }
@@ -366,6 +367,14 @@
         width: 100px;
         padding: 10px;
         font-size: 14px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .services-table,
+      .logos-grid,
+      .work-grid {
+        grid-template-columns: 1fr;
       }
     }
 
