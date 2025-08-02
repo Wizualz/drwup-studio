@@ -128,11 +128,33 @@
       background: #151515;
       border: 1px solid #2a2a2a;
       border-radius: 12px;
-      padding: 40px 20px;
+      padding: 20px 10px;
       text-align: center;
       transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background 0.3s ease-out;
       opacity: 0;
       overflow: hidden;
+      min-width: 0;
+    }
+
+    .table-card span {
+      font-size: 40px;
+      margin-bottom: 10px;
+      display: inline-block;
+      transition: transform 0.3s ease-out;
+    }
+
+    .table-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      transition: color 0.3s ease-out;
+    }
+
+    .table-card p {
+      font-size: 14px;
+      color: #cccccc;
+      margin: 0;
+      transition: color 0.3s ease-out;
     }
 
     .table-card:hover {
@@ -141,33 +163,12 @@
       background: #1a1a1a;
     }
 
-    .table-card span {
-      font-size: 48px;
-      margin-bottom: 20px;
-      display: inline-block;
-      transition: transform 0.3s ease-out;
-    }
-
     .table-card:hover span {
       transform: scale(1.1);
     }
 
-    .table-card h3 {
-      font-size: 24px;
-      font-weight: 600;
-      margin: 0 0 12px;
-      transition: color 0.3s ease-out;
-    }
-
     .table-card:hover h3 {
       color: #ffffff;
-    }
-
-    .table-card p {
-      font-size: 16px;
-      color: #cccccc;
-      margin: 0;
-      transition: color 0.3s ease-out;
     }
 
     .table-card:hover p {
@@ -188,6 +189,7 @@
       border-radius: 12px;
       transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
       opacity: 0;
+      min-width: 0;
     }
 
     .logos-grid img:hover {
@@ -212,6 +214,7 @@
       transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
       opacity: 0;
       position: relative;
+      min-width: 0;
     }
 
     .work-card img {
@@ -298,7 +301,53 @@
       box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4);
     }
 
+    #about-founder {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #about-founder .image-container {
+      flex: 1.5;
+      margin-right: 32px;
+    }
+
+    #about-founder .image-container img {
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      object-fit: contain; /* Changed from cover to contain to avoid cropping */
+      border-radius: 12px;
+      opacity: 0;
+    }
+
+    #about-founder .text-container {
+      flex: 1;
+      padding: 20px 0;
+    }
+
+    #about-founder .text-container h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 2px;
+      opacity: 0;
+    }
+
+    #about-founder p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #cccccc;
+      margin: 0;
+      opacity: 0;
+    }
+
     @media (max-width: 768px) {
+      /* Debug: This media query is active */
       .banner-overlay {
         padding: 10px 20px;
         width: calc(100% - 40px);
@@ -321,31 +370,22 @@
       }
       .services-table {
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-      .table-card:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        gap: 10px;
       }
       .logos-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-      .logos-grid img:hover {
-        transform: translateY(-5px) scale(1.03);
-        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        gap: 10px;
       }
       .work-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        gap: 10px;
         padding: 0 10px;
       }
-      .work-card:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      .table-card, .work-card, .logos-grid img {
+        padding: 15px 5px;
       }
-      .connect-button:hover {
-        transform: translateY(-3px) scale(1.03);
+      .table-card:hover, .work-card:hover, .logos-grid img:hover {
+        transform: translateY(-5px) scale(1.02);
         box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
       }
       .section-title {
@@ -367,6 +407,28 @@
         width: 100px;
         padding: 10px;
         font-size: 14px;
+      }
+      .connect-button:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      }
+      #about-founder {
+        flex-direction: column;
+        text-align: center;
+      }
+      #about-founder .image-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+      #about-founder .image-container img {
+        max-height: 300px;
+      }
+      #about-founder .text-container {
+        padding: 0;
+      }
+      #about-founder .text-container h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
       }
     }
 
@@ -526,6 +588,18 @@
       </div>
     </section>
 
+    <section id="about-founder" class="section">
+      <div id="about-founder-content" style="display: flex; align-items: flex-start; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 32px;">
+        <div class="image-container">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Untitled-2.jpg?v=1754138490" alt="Rehan Pathan" loading="lazy">
+        </div>
+        <div class="text-container">
+          <h2>About the Founder</h2>
+          <p>Rehan Pathan started his journey as a graphic designer and later got into CGI and video work. He’s the person behind Drwup, a creative studio he built to bring fresh design ideas to life. Rehan’s work usually blends visuals with storytelling, and he enjoys exploring new ways to make designs stand out.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="connect" class="section" aria-label="Contact options">
       <div class="connect-greeting"><span class="waving-hand">🖐️</span> Hello!</div>
       <h2 class="connect-title"><span>HOP INTO</span><span>THE CAB?</span></h2>
@@ -541,10 +615,12 @@
         <li><a href="#services">Our Services</a></li>
         <li><a href="#logos">Our Logos</a></li>
         <li><a href="#work">Featured Work</a></li>
+        <li><a href="#about-founder">About Us</a></li>
       </ul>
       <div>
         <p>All rights reserved. Drwup &copy; 2025</p>
         <p>Proudly Made in India 🇮🇳</p>
+        <p><a href="https://www.instagram.com/drwup.studio?igsh=MWw1bmhhd3kwcG5zcA==">Follow Us On Instagram</a></p>
       </div>
     </footer>
   </div>
@@ -677,6 +753,43 @@
       }, '-=0.6');
     });
 
+    // About the Founder Section Animation
+    const founderTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#about-founder',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+        markers: false
+      }
+    });
+    founderTl.fromTo('#about-founder-content .image-container img', {
+      opacity: 0,
+      y: 20
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out'
+    });
+    founderTl.fromTo('#about-founder-content .text-container h2', {
+      opacity: 0,
+      y: 20
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, '-=0.4');
+    founderTl.fromTo('#about-founder-content .text-container p', {
+      opacity: 0,
+      y: 20
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, '-=0.4');
+
     // Connect Section Animation
     const connectTl = gsap.timeline({
       scrollTrigger: {
@@ -748,6 +861,18 @@
           img.style.transform = 'translateY(0) scale(1)';
         }
       });
+      if (document.querySelector('#about-founder-content .image-container img').style.opacity === '0') {
+        document.querySelector('#about-founder-content .image-container img').style.opacity = '1';
+        document.querySelector('#about-founder-content .image-container img').style.transform = 'translateY(0)';
+      }
+      if (document.querySelector('#about-founder-content .text-container h2').style.opacity === '0') {
+        document.querySelector('#about-founder-content .text-container h2').style.opacity = '1';
+        document.querySelector('#about-founder-content .text-container h2').style.transform = 'translateY(0)';
+      }
+      if (document.querySelector('#about-founder-content .text-container p').style.opacity === '0') {
+        document.querySelector('#about-founder-content .text-container p').style.opacity = '1';
+        document.querySelector('#about-founder-content .text-container p').style.transform = 'translateY(0)';
+      }
     });
   </script>
 </body>
