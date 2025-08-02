@@ -109,18 +109,9 @@
       font-size: 56px;
       font-weight: 700;
       margin-bottom: 60px;
-      color: #00f0ff;
+      color: #fff;
       font-family: 'Roboto', sans-serif;
       letter-spacing: 3px;
-      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-      opacity: 0;
-      transform: translateY(50px) scale(0.8);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .section-title.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
     }
 
     .services-table {
@@ -129,6 +120,8 @@
       gap: 32px;
       padding: 0 20px;
       min-height: 200px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .table-card {
@@ -137,14 +130,14 @@
       border-radius: 12px;
       padding: 40px 20px;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background 0.3s ease-out;
       opacity: 0;
       overflow: hidden;
     }
 
     .table-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 0 30px #00f0ff, 0 0 10px #00f0ff inset;
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 255, 255, 0.2);
       background: #1a1a1a;
     }
 
@@ -152,29 +145,29 @@
       font-size: 48px;
       margin-bottom: 20px;
       display: inline-block;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease-out;
     }
 
     .table-card:hover span {
-      transform: scale(1.1) rotate(5deg);
+      transform: scale(1.1);
     }
 
     .table-card h3 {
       font-size: 24px;
       font-weight: 600;
       margin: 0 0 12px;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease-out;
     }
 
     .table-card:hover h3 {
-      color: #00f0ff;
+      color: #ffffff;
     }
 
     .table-card p {
       font-size: 16px;
       color: #cccccc;
       margin: 0;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease-out;
     }
 
     .table-card:hover p {
@@ -186,30 +179,101 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       padding-top: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .logos-grid img {
       width: 100%;
       border-radius: 12px;
-      transition: 0.3s;
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+      opacity: 0;
     }
 
     .logos-grid img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #fff;
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 255, 255, 0.2);
     }
 
-    /* Connect Section Styles */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .work-card {
+      background: #151515;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+      opacity: 0;
+      position: relative;
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .work-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+
     #connect {
-      background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+      background: #1a1a1a;
       text-align: center;
       padding: 100px 32px;
+    }
+
+    .connect-greeting {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      font-family: 'Roboto', sans-serif;
+      text-transform: uppercase;
+    }
+
+    .connect-greeting span.waving-hand {
+      display: inline-block;
+      animation: wave 2s infinite;
+    }
+
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      20% { transform: rotate(15deg); }
+      40% { transform: rotate(-10deg); }
+      60% { transform: rotate(5deg); }
+      80% { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .connect-title {
+      font-size: 72px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 40px;
+      font-family: 'Roboto', sans-serif;
+      text-transform: uppercase;
+      white-space: normal;
+    }
+
+    .connect-title span {
+      display: block;
     }
 
     .connect-buttons {
       display: flex;
       justify-content: center;
-      gap: 32px;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
@@ -217,34 +281,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      width: 200px;
-      padding: 16px 24px;
-      background: #222;
-      border: 2px solid #333;
-      border-radius: 12px;
-      font-size: 18px;
+      width: 120px;
+      padding: 12px;
+      background: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
       font-weight: 600;
       color: #fff;
       text-align: center;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-      opacity: 0;
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
     }
 
     .connect-button:hover {
-      transform: translateY(-10px) scale(1.05);
-      border-color: #00f0ff;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.7), 0 0 5px rgba(0, 240, 255, 0.3) inset;
-      background: #2a2a2a;
-    }
-
-    .connect-button span {
-      font-size: 24px;
-      transition: transform 0.3s ease;
-    }
-
-    .connect-button:hover span {
-      transform: scale(1.1);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -272,12 +323,39 @@
         grid-template-columns: 1fr;
       }
       .table-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 20px #00f0ff, 0 0 5px #00f0ff inset;
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      }
+      .logos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px;
+      }
+      .logos-grid img:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      }
+      .work-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        padding: 0 10px;
+      }
+      .work-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+      }
+      .connect-button:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
       }
       .section-title {
         font-size: 36px;
         letter-spacing: 1px;
+      }
+      .connect-greeting {
+        font-size: 36px;
+      }
+      .connect-title {
+        font-size: 48px;
       }
       .connect-buttons {
         gap: 16px;
@@ -285,18 +363,15 @@
         align-items: center;
       }
       .connect-button {
-        width: 180px;
-        padding: 12px 20px;
-        font-size: 16px;
-      }
-      .connect-button span {
-        font-size: 20px;
+        width: 100px;
+        padding: 10px;
+        font-size: 14px;
       }
     }
 
     footer {
       padding: 40px 32px;
-      background: #1a1a1a;
+      background: #000000;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -312,7 +387,6 @@
       padding: 0;
     }
 
-    /* Custom Cursor */
     .custom-cursor {
       width: 50px;
       height: 50px;
@@ -322,7 +396,7 @@
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 9999;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
       mix-blend-mode: difference;
     }
 
@@ -331,7 +405,6 @@
       .custom-cursor { display: none; }
     }
 
-    /* Screen reader only */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -355,6 +428,7 @@
       <nav class="desktop-menu" aria-label="Main navigation">
         <a href="#services">Our Services</a>
         <a href="#logos">Logo Designs</a>
+        <a href="#work">Featured Work</a>
       </nav>
       <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu" tabindex="0" onclick="toggleMenu()" onkeydown="handleKeydown(event)">
         <span></span><span></span><span></span>
@@ -362,6 +436,7 @@
       <div id="menu" aria-label="Mobile navigation" role="navigation">
         <a href="#services" onclick="toggleMenu()">Our Services</a>
         <a href="#logos" onclick="toggleMenu()">Logo Designs</a>
+        <a href="#work" onclick="toggleMenu()">Featured Work</a>
       </div>
     </div>
 
@@ -415,18 +490,42 @@
       </div>
     </section>
 
+    <section id="work" class="section" aria-label="Featured Work">
+      <h2 class="section-title">Featured Work</h2>
+      <div class="work-grid">
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/100social.png?v=1753857411" alt="Featured work 1" loading="lazy">
+        </div>
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/savy_tree.jpg?v=1753857411" alt="Featured work 2" loading="lazy">
+        </div>
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/social_sumid.png?v=1753857411" alt="Featured work 3" loading="lazy">
+        </div>
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/insidemedia.png?v=1753857412" alt="Featured work 4" loading="lazy">
+        </div>
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/ritikas.png?v=1753857412" alt="Featured work 5" loading="lazy">
+        </div>
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Mobile_rg_intsa.png?v=1753857412" alt="Featured work 6" loading="lazy">
+        </div>
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/social_samosa.png?v=1753857412" alt="Featured work 7" loading="lazy">
+        </div>
+        <div class="work-card">
+          <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/zen_digitsl.png?v=1753857413" alt="Featured work 8" loading="lazy">
+        </div>
+      </div>
+    </section>
+
     <section id="connect" class="section" aria-label="Contact options">
-      <h2 class="section-title">Hop into the Cab?</h2>
+      <div class="connect-greeting"><span class="waving-hand">🖐️</span> Hello!</div>
+      <h2 class="connect-title"><span>HOP INTO</span><span>THE CAB?</span></h2>
       <div class="connect-buttons">
-        <a href="mailto:hello@drwup.com" class="connect-button" aria-label="Send an email to Drwup">
-          <span>📧</span> Email
-        </a>
-        <a href="tel:+919987876738" class="connect-button" aria-label="Call Drwup">
-          <span>📞</span> Phone
-        </a>
-        <a href="https://wa.me/919987876738" target="_blank" class="connect-button" aria-label="Message Drwup on WhatsApp">
-          <span>💬</span> WhatsApp
-        </a>
+        <a href="mailto:hello@drwup.com" class="connect-button">📧 Email</a>
+        <a href="tel:+919987876738" class="connect-button">📞 Phone</a>
       </div>
     </section>
 
@@ -435,6 +534,7 @@
       <ul>
         <li><a href="#services">Our Services</a></li>
         <li><a href="#logos">Our Logos</a></li>
+        <li><a href="#work">Featured Work</a></li>
       </ul>
       <div>
         <p>All rights reserved. Drwup &copy; 2025</p>
@@ -466,11 +566,11 @@
       cursor.style.top = e.clientY + 'px';
     });
 
-    const hoverables = document.querySelectorAll('a, button, .table-card, .connect-button');
+    const hoverables = document.querySelectorAll('a, button, .table-card, .connect-button, .work-card, .logos-grid img');
     hoverables.forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursor.style.background = 'rgba(0, 240, 255, 0.3)';
+        cursor.style.background = 'rgba(255, 255, 255, 0.3)';
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -481,11 +581,11 @@
     // GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
 
-    // Services Section Animation
+    // Services Section Cards Animation
     const servicesTl = gsap.timeline({
       scrollTrigger: {
         trigger: '.services-table',
-        start: "top 80%",
+        start: "top 85%",
         toggleActions: "play none none none",
         markers: false
       }
@@ -493,97 +593,153 @@
     gsap.utils.toArray('.table-card').forEach((card, i) => {
       servicesTl.fromTo(card, {
         opacity: 0,
-        y: 100,
-        scale: 0.5,
-        rotation: -15,
-        background: "#151515",
-        boxShadow: "0 0 0 #00f0ff"
+        y: 20,
+        scale: 0.95
       }, {
         opacity: 1,
         y: 0,
         scale: 1,
-        rotation: 0,
-        background: "#151515",
-        boxShadow: "0 10px 20px rgba(0, 240, 255, 0.3)",
-        duration: 1.2,
-        ease: "elastic.out(1, 0.5)",
-        delay: i * 0.3
-      }, i * 0.3);
+        duration: 0.6,
+        ease: "power3.out",
+        delay: i * 0.1
+      }, i * 0.1);
     });
 
-    // Connect Section Title Animation
-    const connectTitleTl = gsap.timeline({
+    // Logos Section Animation
+    const logosTl = gsap.timeline({
       scrollTrigger: {
-        trigger: '#connect',
-        start: "top 80%",
+        trigger: '#logos',
+        start: "top 85%",
         toggleActions: "play none none none",
         markers: false
       }
     });
-    connectTitleTl.fromTo('.section-title', {
+    logosTl.fromTo('#logos .section-title', {
       opacity: 0,
-      y: 50,
-      scale: 0.8,
-      rotation: 5
+      y: 20
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power3.out"
+    });
+    gsap.utils.toArray('.logos-grid img').forEach((img, i) => {
+      logosTl.fromTo(img, {
+        opacity: 0,
+        y: 20,
+        scale: 0.95
+      }, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        ease: "power3.out",
+        delay: i * 0.1
+      }, i * 0.1);
+    });
+
+    // Featured Work Section Animation
+    const workTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#work',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+        markers: false
+      }
+    });
+    workTl.fromTo('#work .section-title', {
+      opacity: 0,
+      y: 30
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+    gsap.utils.toArray('.work-card').forEach((card, i) => {
+      workTl.fromTo(card, {
+        opacity: 0,
+        y: 40,
+        scale: 0.9
+      }, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'power3.out',
+        delay: i * 0.15
+      }, '-=0.6');
+    });
+
+    // Connect Section Animation
+    const connectTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#connect',
+        start: "top 85%",
+        toggleActions: "play none none none",
+        markers: false
+      }
+    });
+    connectTl.fromTo('.connect-greeting', {
+      opacity: 0,
+      y: 30,
+      scale: 1.2
     }, {
       opacity: 1,
       y: 0,
       scale: 1,
-      rotation: 0,
       duration: 1,
-      ease: "elastic.out(1, 0.7)",
-      textShadow: "0 0 15px rgba(0, 240, 255, 0.7)"
-    });
-
-    // Connect Buttons Animation
-    const connectButtonsTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.connect-buttons',
-        start: "top 80%",
-        toggleActions: "play none none none",
-        markers: false
+      ease: "elastic.out(1, 0.3)",
+      onComplete: () => {
+        gsap.to('.connect-greeting', {
+          y: -10,
+          yoyo: true,
+          repeat: -1,
+          duration: 1.5,
+          ease: "sine.inOut"
+        });
       }
     });
-    gsap.utils.toArray('.connect-button').forEach((button, i) => {
-      connectButtonsTl.fromTo(button, {
-        opacity: 0,
-        y: 50,
-        scale: 0.8,
-        rotation: i % 2 === 0 ? -10 : 10
-      }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        rotation: 0,
-        duration: 0.8,
-        ease: "bounce.out",
-        boxShadow: "0 0 10px rgba(0, 240, 255, 0.5)",
-        delay: i * 0.2
-      }, i * 0.2);
-    });
+    connectTl.fromTo('.connect-title', {
+      opacity: 0,
+      y: 20
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power3.out"
+    }, '-=0.5');
+    connectTl.fromTo('.connect-button', {
+      opacity: 0,
+      y: 20,
+      scale: 0.95
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.6,
+      ease: "power3.out",
+      stagger: 0.1
+    }, '-=0.4');
 
-    // Fallback to show cards, buttons, and titles if GSAP fails
+    // Fallback to show cards, buttons, and images if GSAP fails
     document.addEventListener('DOMContentLoaded', () => {
-      gsap.utils.toArray('.table-card').forEach(card => {
+      gsap.utils.toArray('.table-card, .work-card').forEach(card => {
         if (card.style.opacity === '0') {
           card.style.opacity = '1';
-          card.style.transform = 'translateY(0) scale(1) rotate(0)';
-          card.style.background = '#151515';
-          card.style.boxShadow = '0 10px 20px rgba(0, 240, 255, 0.3)';
+          card.style.transform = 'translateY(0) scale(1)';
         }
       });
       gsap.utils.toArray('.connect-button').forEach(button => {
         if (button.style.opacity === '0') {
           button.style.opacity = '1';
           button.style.transform = 'translateY(0) scale(1)';
-          button.style.boxShadow = '0 0 10px rgba(0, 240, 255, 0.5)';
         }
       });
-      gsap.utils.toArray('.section-title').forEach(title => {
-        if (title.style.opacity === '0') {
-          title.style.opacity = '1';
-          title.style.transform = 'translateY(0) scale(1)';
-          title.style.textShadow = '0 0 15px rgba(0, 240, 255, 0.7)';
+      gsap.utils.toArray('.logos-grid img').forEach(img => {
+        if (img.style.opacity === '0') {
+          img.style.opacity = '1';
+          img.style.transform = 'translateY(0) scale(1)';
         }
       });
     });
