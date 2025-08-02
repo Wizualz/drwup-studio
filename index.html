@@ -303,29 +303,34 @@
 
     #about-founder {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       max-width: 1200px;
       margin: 0 auto;
+      text-align: center;
     }
 
     #about-founder .image-container {
-      flex: 1.5;
-      margin-right: 32px;
+      margin: 0 auto 40px;
+      padding: 0 15px;
+      width: 100%;
+      max-width: 300px; /* Reduced for better mobile fit */
     }
 
     #about-founder .image-container img {
       width: 100%;
       height: auto;
-      max-height: 500px;
-      object-fit: contain; /* Changed from cover to contain to avoid cropping */
+      max-height: 250px; /* Adjusted for mobile screens */
+      object-fit: contain;
       border-radius: 12px;
       opacity: 0;
     }
 
     #about-founder .text-container {
-      flex: 1;
-      padding: 20px 0;
+      padding: 0 15px;
+      max-width: 350px; /* Constrained width for better readability */
+      margin: 0 auto;
     }
 
     #about-founder .text-container h2 {
@@ -347,7 +352,6 @@
     }
 
     @media (max-width: 768px) {
-      /* Debug: This media query is active */
       .banner-overlay {
         padding: 10px 20px;
         width: calc(100% - 40px);
@@ -413,22 +417,27 @@
         box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
       }
       #about-founder {
-        flex-direction: column;
-        text-align: center;
+        padding: 20px 0;
       }
       #about-founder .image-container {
-        margin-right: 0;
-        margin-bottom: 20px;
+        margin: 0 auto 40px;
+        max-width: 250px; /* Further reduced for mobile */
       }
       #about-founder .image-container img {
-        max-height: 300px;
+        max-height: 200px; /* Optimized for smaller screens */
       }
       #about-founder .text-container {
-        padding: 0;
+        max-width: 300px; /* Reduced for better line length */
+        padding: 0 10px;
       }
       #about-founder .text-container h2 {
-        font-size: 28px;
+        font-size: 28px; /* Slightly reduced for mobile */
         margin-bottom: 15px;
+      }
+      #about-founder p {
+        font-size: 14px; /* Reduced for mobile readability */
+        line-height: 1.7;
+        color: #dddddd;
       }
     }
 
@@ -437,6 +446,22 @@
       .logos-grid,
       .work-grid {
         grid-template-columns: 1fr;
+      }
+      #about-founder .image-container {
+        max-width: 200px; /* Further reduced for very small screens */
+      }
+      #about-founder .image-container img {
+        max-height: 180px;
+      }
+      #about-founder .text-container {
+        max-width: 250px;
+        padding: 0 5px;
+      }
+      #about-founder .text-container h2 {
+        font-size: 24px;
+      }
+      #about-founder p {
+        font-size: 13px;
       }
     }
 
@@ -589,7 +614,7 @@
     </section>
 
     <section id="about-founder" class="section">
-      <div id="about-founder-content" style="display: flex; align-items: flex-start; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 32px;">
+      <div id="about-founder-content" style="display: flex; align-items: center; justify-content: center; flex-direction: column; max-width: 1200px; margin: 0 auto; gap: 20px;">
         <div class="image-container">
           <img src="https://cdn.shopify.com/s/files/1/0675/9720/5546/files/Untitled-2.jpg?v=1754138490" alt="Rehan Pathan" loading="lazy">
         </div>
@@ -757,38 +782,40 @@
     const founderTl = gsap.timeline({
       scrollTrigger: {
         trigger: '#about-founder',
-        start: 'top 85%',
+        start: window.innerWidth <= 768 ? 'top 90%' : 'top 85%',
         toggleActions: 'play none none none',
         markers: false
       }
     });
     founderTl.fromTo('#about-founder-content .image-container img', {
       opacity: 0,
-      y: 20
+      y: window.innerWidth <= 768 ? 10 : 20,
+      scale: window.innerWidth <= 768 ? 0.95 : 1
     }, {
       opacity: 1,
       y: 0,
-      duration: 0.6,
-      ease: 'power3.out'
+      scale: 1,
+      duration: window.innerWidth <= 768 ? 0.4 : 0.6,
+      ease: 'power2.out'
     });
     founderTl.fromTo('#about-founder-content .text-container h2', {
       opacity: 0,
-      y: 20
+      y: window.innerWidth <= 768 ? 10 : 20
     }, {
       opacity: 1,
       y: 0,
-      duration: 0.6,
-      ease: 'power3.out'
-    }, '-=0.4');
+      duration: window.innerWidth <= 768 ? 0.4 : 0.6,
+      ease: 'power2.out'
+    }, '-=0.3');
     founderTl.fromTo('#about-founder-content .text-container p', {
       opacity: 0,
-      y: 20
+      y: window.innerWidth <= 768 ? 10 : 20
     }, {
       opacity: 1,
       y: 0,
-      duration: 0.6,
-      ease: 'power3.out'
-    }, '-=0.4');
+      duration: window.innerWidth <= 768 ? 0.4 : 0.6,
+      ease: 'power2.out'
+    }, '-=0.3');
 
     // Connect Section Animation
     const connectTl = gsap.timeline({
