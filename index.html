@@ -124,9 +124,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 .label-before{left:14px;background:rgba(0,0,0,.75);color:#888;border:1px solid #333}
 .label-after{right:14px;background:rgba(255,92,0,.15);color:var(--orange);border:1px solid rgba(255,92,0,.3)}
 
-/* COMPARE IMAGES */
-.compare-after-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.compare-before-img{position:absolute;left:0;top:0;height:100%;width:700px;object-fit:cover;object-position:left}
+/* COMPARE IMAGES — both must match exactly so they align at the seam */
+.compare-after-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+/* beforeClip is position:absolute, width=slider%, overflow:hidden — the img inside must fill the FULL compare-wrap width so it aligns with the after image */
+#beforeClip{position:absolute;top:0;left:0;height:100%;z-index:2;overflow:hidden}
+.compare-before-img{position:absolute;top:0;left:0;width:var(--cw,780px);height:100%;object-fit:cover;object-position:center}
 
 /* PROCESS LOOP */
 #process{padding:100px 20px;overflow:hidden;background:linear-gradient(180deg,#080808,#0c0a07)}
@@ -901,15 +903,18 @@ const mT=document.getElementById('marqueeTrack');
 
 // COMPARE SLIDER
 const cW=document.getElementById('compareWrap'),bC=document.getElementById('beforeClip'),cH=document.getElementById('compareHandle');
+function syncCW(){cW.style.setProperty('--cw',cW.offsetWidth+'px');}
+syncCW();window.addEventListener('resize',syncCW);
 let drag=false,autoRun=true,aPos=35,aDir=1;
-(function al(){if(!autoRun)return;aPos+=aDir*.22;if(aPos>76)aDir=-1;if(aPos<14)aDir=1;bC.style.width=aPos+'%';cH.style.left=aPos+'%';requestAnimationFrame(al)})();
-function setSlider(x){const r=cW.getBoundingClientRect();let p=((x-r.left)/r.width)*100;p=Math.max(4,Math.min(96,p));bC.style.width=p+'%';cH.style.left=p+'%'}
+function applyPos(p){bC.style.width=p+'%';cH.style.left=p+'%';}
+(function al(){if(!autoRun)return;aPos+=aDir*.22;if(aPos>76)aDir=-1;if(aPos<14)aDir=1;applyPos(aPos);requestAnimationFrame(al)})();
+function setSlider(x){const r=cW.getBoundingClientRect();let p=((x-r.left)/r.width)*100;p=Math.max(4,Math.min(96,p));applyPos(p);}
 cW.addEventListener('mousedown',e=>{drag=true;autoRun=false;setSlider(e.clientX)});
 document.addEventListener('mousemove',e=>{if(drag)setSlider(e.clientX)});
-document.addEventListener('mouseup',()=>{if(drag){drag=false;setTimeout(()=>{autoRun=true;(function al(){if(!autoRun)return;aPos+=aDir*.22;if(aPos>76)aDir=-1;if(aPos<14)aDir=1;bC.style.width=aPos+'%';cH.style.left=aPos+'%';requestAnimationFrame(al)})()},2500)}});
+document.addEventListener('mouseup',()=>{if(drag){drag=false;setTimeout(()=>{autoRun=true;(function al(){if(!autoRun)return;aPos+=aDir*.22;if(aPos>76)aDir=-1;if(aPos<14)aDir=1;applyPos(aPos);requestAnimationFrame(al)})()},2500)}});
 cW.addEventListener('touchstart',e=>{drag=true;autoRun=false;setSlider(e.touches[0].clientX)},{passive:true});
 document.addEventListener('touchmove',e=>{if(drag)setSlider(e.touches[0].clientX)},{passive:true});
-document.addEventListener('touchend',()=>{if(drag){drag=false;setTimeout(()=>{autoRun=true;(function al(){if(!autoRun)return;aPos+=aDir*.22;if(aPos>76)aDir=-1;if(aPos<14)aDir=1;bC.style.width=aPos+'%';cH.style.left=aPos+'%';requestAnimationFrame(al)})()},2500)}});
+document.addEventListener('touchend',()=>{if(drag){drag=false;setTimeout(()=>{autoRun=true;(function al(){if(!autoRun)return;aPos+=aDir*.22;if(aPos>76)aDir=-1;if(aPos<14)aDir=1;applyPos(aPos);requestAnimationFrame(al)})()},2500)}});
 
 // PACKAGE SELECT
 function selectPkg(pkg){document.querySelectorAll('.pkg-opt').forEach(o=>o.classList.remove('active'));const el=document.getElementById('pkg-'+pkg);if(el)el.classList.add('active');document.getElementById('selectedPkg').value=pkg;document.getElementById('order').scrollIntoView({behavior:'smooth',block:'start'})}
