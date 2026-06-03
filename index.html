@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>drwup restore — Bring Old Photos Back to Life</title>
+<title>Reframe AI — Bring Old Photos Back to Life</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,92,0,.07)}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--white);letter-spacing:-1px;display:flex;align-items:center;gap:8px}
-.nav-logo span{color:var(--orange)}
+.nav-logo{display:flex;align-items:center;gap:8px}
+.nav-logo img{height:36px;width:auto;object-fit:contain}
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{color:#888;text-decoration:none;font-size:13.5px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--orange)}
@@ -87,12 +87,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 @keyframes hsF1{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(-1deg)}}
 @keyframes hsF2{0%,100%{transform:translateY(0) rotate(2.5deg)}50%{transform:translateY(-10px) rotate(1deg)}}
 @keyframes hsF3{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(-3.5deg)}}
-
-/* Float card label overlay */
 .fc-label{position:absolute;bottom:0;left:0;right:0;padding:4px 0;text-align:center;font-family:'Syne',sans-serif;font-size:8px;font-weight:800;letter-spacing:1.5px}
 .fc-label-before{background:rgba(0,0,0,.75);color:#888}
 .fc-label-after{background:rgba(255,92,0,.25);color:var(--orange)}
-
 .hs-sparkle{position:absolute;border-radius:50%;background:var(--orange);pointer-events:none}
 .sp1{width:6px;height:6px;top:22%;left:36%;animation:spP 2.2s ease-in-out infinite}
 .sp2{width:4px;height:4px;top:58%;right:28%;animation:spP 3s .6s ease-in-out infinite}
@@ -123,10 +120,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 .magic-label{position:absolute;bottom:14px;padding:5px 13px;border-radius:50px;font-size:11px;font-weight:700;font-family:'Syne',sans-serif;letter-spacing:1px;z-index:5}
 .label-before{left:14px;background:rgba(0,0,0,.75);color:#888;border:1px solid #333}
 .label-after{right:14px;background:rgba(255,92,0,.15);color:var(--orange);border:1px solid rgba(255,92,0,.3)}
-
-/* COMPARE IMAGES — both must match exactly so they align at the seam */
 .compare-after-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-/* beforeClip is position:absolute, width=slider%, overflow:hidden — the img inside must fill the FULL compare-wrap width so it aligns with the after image */
 #beforeClip{position:absolute;top:0;left:0;height:100%;z-index:2;overflow:hidden}
 .compare-before-img{position:absolute;top:0;left:0;width:var(--cw,780px);height:100%;object-fit:cover;object-position:center}
 
@@ -206,19 +200,36 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 .price-btn-secondary{background:transparent;color:var(--text);border:1.5px solid rgba(255,255,255,.1)!important}
 .price-btn-secondary:hover{border-color:var(--orange)!important;color:var(--orange);background:rgba(255,92,0,.05)}
 
+/* AI REELS SECTION */
+#reels{padding:100px 20px;background:linear-gradient(180deg,#0c0a07,#080808)}
+.reels-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:820px;margin:0 auto}
+.reel-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:32px 28px 28px;position:relative;overflow:visible;transition:all .35s;display:flex;flex-direction:column}
+.reel-card.reel-featured{border:2px solid var(--orange);background:linear-gradient(160deg,#1c0900,#0e0900 50%,#0c0c0c 100%);box-shadow:0 0 70px rgba(255,92,0,.1)}
+.reel-card:hover{transform:translateY(-7px);box-shadow:0 28px 70px rgba(0,0,0,.55)}
+.reel-card.reel-featured:hover{box-shadow:0 28px 70px rgba(255,92,0,.22)}
+.reel-icon-wrap{width:52px;height:52px;background:rgba(255,92,0,.12);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:18px}
+.reel-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:6px}
+.reel-desc{font-size:13px;color:#888;line-height:1.55;margin-bottom:20px}
+.reel-price-wrap{display:flex;align-items:flex-end;gap:4px;margin-bottom:16px}
+.reel-curr{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--orange);align-self:flex-start;margin-top:6px}
+.reel-amount{font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:var(--white);line-height:1;letter-spacing:-2px}
+.reel-features{list-style:none;margin-bottom:24px;flex:1}
+.reel-features li{font-size:13.5px;color:var(--text);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:10px;line-height:1.4}
+.reel-features li:last-child{border-bottom:none}
+.reel-features li::before{content:'✦';display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;background:rgba(255,92,0,.12);color:var(--orange);font-weight:800;font-size:10px;border-radius:50%;flex-shrink:0}
+.reel-btn{width:100%;padding:14px;border-radius:50px;font-family:'Syne',sans-serif;font-weight:700;font-size:14.5px;cursor:pointer;transition:all .25s;border:none;letter-spacing:.3px}
+.reel-btn-primary{background:var(--orange);color:#fff}
+.reel-btn-primary:hover{background:var(--orange2);transform:scale(1.02);box-shadow:0 8px 30px rgba(255,92,0,.4)}
+.reel-btn-secondary{background:transparent;color:var(--text);border:1.5px solid rgba(255,255,255,.1)!important}
+.reel-btn-secondary:hover{border-color:var(--orange)!important;color:var(--orange);background:rgba(255,92,0,.05)}
+.reel-ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-size:11px;font-weight:800;font-family:'Syne',sans-serif;padding:4px 18px;border-radius:50px;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 18px rgba(255,92,0,.45);z-index:5}
+
 /* PAYMENT QR SECTION */
 #payment{padding:100px 20px;background:linear-gradient(180deg,#0c0a07,#080808)}
 .payment-wrap{max-width:600px;margin:0 auto}
 .payment-card{background:var(--surface);border:2px solid rgba(255,92,0,.18);border-radius:24px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:24px;box-shadow:0 0 60px rgba(255,92,0,.07)}
 .qr-container{background:#fff;border-radius:16px;padding:16px;box-shadow:0 8px 40px rgba(255,92,0,.18),0 0 0 3px rgba(255,92,0,.15);position:relative}
 .qr-container img{width:200px;height:200px;display:block;border-radius:8px}
-.qr-corner{position:absolute;width:20px;height:20px;border-color:var(--orange);border-style:solid;border-width:0}
-.qr-tl{top:-3px;left:-3px;border-top-width:3px;border-left-width:3px;border-top-left-radius:4px}
-.qr-tr{top:-3px;right:-3px;border-top-width:3px;border-right-width:3px;border-top-right-radius:4px}
-.qr-bl{bottom:-3px;left:-3px;border-bottom-width:3px;border-left-width:3px;border-bottom-left-radius:4px}
-.qr-br{bottom:-3px;right:-3px;border-bottom-width:3px;border-right-width:3px;border-bottom-right-radius:4px}
-.qr-scan-anim{position:absolute;left:16px;right:16px;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);top:16px;animation:qrScan 2.5s ease-in-out infinite}
-@keyframes qrScan{0%,100%{top:16px;opacity:0}10%{opacity:1}90%{top:calc(100% - 16px);opacity:1}100%{top:calc(100% - 16px);opacity:0}}
 .payment-upi-id{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--orange);letter-spacing:-0.5px;text-align:center}
 .payment-upi-sub{font-size:13px;color:#555;text-align:center;margin-top:-16px}
 .payment-apps{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap}
@@ -237,6 +248,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 .form-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,92,0,.08)}
 .form-input::placeholder{color:#2a2a2a}
 .pkg-options{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.pkg-options-wide{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 .pkg-opt{border:1.5px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s;background:transparent}
 .pkg-opt:hover,.pkg-opt.active{border-color:var(--orange);background:rgba(255,92,0,.07)}
 .pkg-opt-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);display:block;margin-bottom:4px}
@@ -308,7 +320,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);position:relative
 footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent);opacity:.6}
 .footer-main{max-width:1100px;margin:0 auto;padding:64px 40px 0;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px}
 .footer-logo{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--white);display:inline-flex;align-items:center;gap:9px;margin-bottom:14px;text-decoration:none}
-.footer-logo span{color:var(--orange)}
+.footer-logo img{height:36px;width:auto;object-fit:contain}
 .footer-tagline{color:#555;font-size:13.5px;line-height:1.75;max-width:240px;margin-bottom:24px}
 .footer-col-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#888;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:18px}
 .footer-col-links{display:flex;flex-direction:column;gap:11px}
@@ -325,6 +337,11 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 .footer-copy span{color:#888}
 .footer-badges{display:flex;align-items:center;gap:14px}
 .footer-badge{display:flex;align-items:center;gap:5px;font-size:11px;color:#666;font-weight:500}
+
+/* INSTA LINK */
+.insta-link{display:inline-flex;align-items:center;gap:7px;color:#aaa;text-decoration:none;font-size:13.5px;font-weight:400;transition:color .2s;margin-top:4px}
+.insta-link:hover{color:var(--orange)}
+.insta-icon{width:18px;height:18px;flex-shrink:0}
 
 /* SCROLL REVEAL */
 .s-reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
@@ -380,6 +397,11 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   .price-card{margin-top:12px}
   .price-card.featured{margin-top:24px!important;padding-top:38px}
   .price-amount{font-size:44px!important}
+  #reels{padding:56px 16px}
+  .reels-grid{grid-template-columns:1fr!important;max-width:360px!important;margin:0 auto!important}
+  .reel-card{margin-top:12px}
+  .reel-card.reel-featured{margin-top:24px!important}
+  .reel-amount{font-size:44px!important}
   #payment{padding:56px 16px}
   .payment-card{padding:24px 18px}
   .qr-container img{width:160px;height:160px}
@@ -387,6 +409,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   #order{padding:56px 16px}
   .order-wrap{padding:22px 16px;border-radius:16px}
   .pkg-options{grid-template-columns:1fr!important}
+  .pkg-options-wide{grid-template-columns:1fr!important}
   .pkg-opt{display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
   .upi-info{flex-direction:column;align-items:flex-start;gap:8px}
   .submit-btn{font-size:15px;padding:14px}
@@ -411,19 +434,20 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   <a href="#magic" onclick="closeMobile()">The Magic</a>
   <a href="#process" onclick="closeMobile()">How It Works</a>
   <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="#reels" onclick="closeMobile()">AI Reels</a>
   <a href="#testimonials" onclick="closeMobile()">Reviews</a>
   <a href="#order" onclick="closeMobile()" style="color:var(--orange)">Order Now</a>
 </div>
 
 <nav>
   <div class="nav-logo">
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="4" width="20" height="22" rx="3" fill="#141414" stroke="#FF5C00" stroke-width="1.4"/><line x1="2" y1="12" x2="22" y2="13.5" stroke="rgba(255,92,0,.28)" stroke-width="1"/><circle cx="7" cy="9" r="2" fill="#FF5C00" opacity=".35"/><line x1="19" y1="19" x2="27" y2="27" stroke="#FF5C00" stroke-width="2.2" stroke-linecap="round"/><circle cx="19" cy="19" r="3" fill="#FF5C00"/><path d="M19,13 L20,16.4 L23.4,17.5 L20,18.6 L19,22 L18,18.6 L14.6,17.5 L18,16.4Z" fill="#FF8A3D" opacity=".9"/></svg>
-    drwup <span>restore</span>
+    <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/REFRAME_AI.png?v=1780472325" alt="Reframe AI Logo">
   </div>
   <ul class="nav-links">
     <li><a href="#magic">The Magic</a></li>
     <li><a href="#process">How It Works</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reels">AI Reels</a></li>
     <li><a href="#testimonials">Reviews</a></li>
   </ul>
   <a href="#order" class="nav-cta">Order Now</a>
@@ -439,7 +463,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
     <div class="hero-left">
       <div class="hero-eyebrow">
         <span style="width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0;animation:blink 2s infinite;display:block"></span>
-        AI-Powered Photo Restoration — from Rs. 99
+        AI-Powered Photo Restoration — from Rs. 49
       </div>
       <h1 class="hero-title">Bring Your<br><em>Old Memories</em><br>Back to Life</h1>
       <p class="hero-sub">Faded, torn, damaged, or sepia — we restore your precious photographs with AI. Delivered on WhatsApp in 24–48 hours.</p>
@@ -467,7 +491,6 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 
     <div class="hero-right">
       <div class="hero-showcase">
-        <!-- MAIN FLIP CARD — uses BEFORE_1 / AFTER_1 -->
         <div class="hs-main-card">
           <div class="hs-card-inner">
             <div class="hs-before">
@@ -480,36 +503,27 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
           <div class="hs-scan-line"></div>
           <div class="hs-glow-ring"></div>
         </div>
-
-        <!-- Floating cards — BEFORE_2/AFTER_2, BEFORE_3/AFTER_3, BEFORE_4/AFTER_4, BEFORE_5/AFTER_5 -->
         <div class="hs-float-card hs-fc-1" style="width:90px;height:110px">
           <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/BEFORE_2.jpg?v=1780313265" alt="Before" style="width:100%;height:100%;object-fit:cover;display:block">
           <div class="fc-label fc-label-before">BEFORE</div>
         </div>
-
         <div class="hs-float-card hs-fc-2" style="width:80px;height:100px">
           <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/AFTER_2.jpg?v=1780313268" alt="After" style="width:100%;height:100%;object-fit:cover;display:block">
           <div class="fc-label fc-label-after">AFTER</div>
         </div>
-
         <div class="hs-float-card hs-fc-3" style="width:100px;height:125px">
           <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/BEFORE_3.jpg?v=1780313268" alt="Before" style="width:100%;height:100%;object-fit:cover;display:block">
           <div class="fc-label fc-label-before">BEFORE</div>
         </div>
-
         <div class="hs-float-card hs-fc-4" style="width:85px;height:105px">
           <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/AFTER_3.jpg?v=1780313268" alt="After" style="width:100%;height:100%;object-fit:cover;display:block">
           <div class="fc-label fc-label-after">AFTER</div>
         </div>
-
-        <!-- AI badge -->
         <div class="hs-ai-badge">
           <div class="hs-ai-dot"></div>
           <span>AI Restoring</span>
           <div class="hs-ai-bar"><div class="hs-ai-fill"></div></div>
         </div>
-
-        <!-- Sparkles -->
         <div class="hs-sparkle sp1"></div>
         <div class="hs-sparkle sp2"></div>
         <div class="hs-sparkle sp3"></div>
@@ -524,7 +538,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
-<!-- MAGIC COMPARE — uses ORIGINAL.jpg / RESTORED.jpg -->
+<!-- MAGIC COMPARE -->
 <section id="magic" style="padding:100px 20px">
   <div class="s-reveal">
     <p class="section-label">The Transformation</p>
@@ -532,17 +546,12 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
     <p class="section-sub">Drag the slider — see how we turn a damaged photo into a vivid, lifelike memory.</p>
   </div>
   <div class="compare-wrap s-reveal" id="compareWrap">
-    <!-- AFTER (full width behind) -->
     <img class="compare-after-img" src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/RESTORED.jpg?v=1780313267" alt="Restored photo">
     <div class="magic-label label-after">RESTORED</div>
-
-    <!-- BEFORE (clipped) -->
     <div id="beforeClip">
       <img class="compare-before-img" src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/ORIGINAL.jpg?v=1780313264" alt="Original damaged photo">
       <div class="magic-label label-before">ORIGINAL</div>
     </div>
-
-    <!-- Handle -->
     <div id="compareHandle">
       <div class="handle-btn">&#8942;&#8942;</div>
     </div>
@@ -568,9 +577,9 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
               <span style="color:#d8d0c4;font-size:10.5px;font-weight:700;margin-left:6px">Choose Your Package</span>
             </div>
             <div class="as-body" style="padding:12px 9px;gap:8px">
-              <div class="apkg"><div><div style="font-size:10.5px;font-weight:700;color:#d8d0c4">1 Photo Restore</div><div style="font-size:8.5px;color:#555;margin-top:1px">First restore only</div></div><div style="font-size:13px;font-weight:800;color:#FF5C00">Rs.99</div></div>
-              <div class="apkg apkg-sel"><div><div style="font-size:10.5px;font-weight:700;color:#d8d0c4">10 Photos Pack</div><div style="font-size:8.5px;color:#56d364;margin-top:1px">Save Rs.500</div></div><div style="font-size:13px;font-weight:800;color:#FF5C00">Rs.1000</div></div>
-              <div class="apkg"><div><div style="font-size:10.5px;font-weight:700;color:#d8d0c4">AI Reel Video</div><div style="font-size:8.5px;color:#56d364;margin-top:1px">Save Rs.500</div></div><div style="font-size:13px;font-weight:800;color:#FF5C00">Rs.2500</div></div>
+              <div class="apkg"><div><div style="font-size:10.5px;font-weight:700;color:#d8d0c4">1 Photo Restore</div><div style="font-size:8.5px;color:#555;margin-top:1px">First restore only</div></div><div style="font-size:13px;font-weight:800;color:#FF5C00">Rs.49</div></div>
+              <div class="apkg apkg-sel"><div><div style="font-size:10.5px;font-weight:700;color:#d8d0c4">10 Photos Pack</div><div style="font-size:8.5px;color:#56d364;margin-top:1px">Save Rs.500</div></div><div style="font-size:13px;font-weight:800;color:#FF5C00">Rs.999</div></div>
+              <div class="apkg"><div><div style="font-size:10.5px;font-weight:700;color:#d8d0c4">AI Reel Video</div><div style="font-size:8.5px;color:#56d364;margin-top:1px">Single Reel</div></div><div style="font-size:13px;font-weight:800;color:#FF5C00">Rs.3500</div></div>
               <div class="apkg-btn">Select 10 Photos</div>
             </div>
           </div>
@@ -578,7 +587,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
           <div class="anim-state as-1">
             <div class="as-header" style="background:#075E54;gap:7px">
               <div class="wa-av"><svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M8 1C4.1 1 1 4.1 1 8c0 1.3.4 2.6 1 3.7L1 15l3.4-1C5.5 14.6 6.7 15 8 15c3.9 0 7-3.1 7-7S11.9 1 8 1z"/></svg></div>
-              <div><div style="color:white;font-size:10.5px;font-weight:700">drwup restore</div><div style="color:rgba(255,255,255,.65);font-size:8.5px">online</div></div>
+              <div><div style="color:white;font-size:10.5px;font-weight:700">Reframe AI</div><div style="color:rgba(255,255,255,.65);font-size:8.5px">online</div></div>
             </div>
             <div class="as-body">
               <div class="wa-bubble bot" style="--d:.05s">Hi! Send your name and the old photo to restore.</div>
@@ -596,10 +605,10 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
               <span style="color:#d8d0c4;font-size:10.5px;font-weight:700;margin-left:6px">Payment via UPI</span>
             </div>
             <div class="as-body" style="align-items:center;padding:10px 8px;gap:6px">
-              <div style="background:#fff;border-radius:7px;padding:4px;width:68px;height:68px"><svg viewBox="0 0 60 60" width="60" height="60"><rect width="60" height="60" fill="white"/><rect x="2" y="2" width="18" height="18" rx="2" fill="#111"/><rect x="4" y="4" width="14" height="14" rx="1" fill="white"/><rect x="6" y="6" width="10" height="10" rx="1" fill="#111"/><rect x="40" y="2" width="18" height="18" rx="2" fill="#111"/><rect x="42" y="4" width="14" height="14" rx="1" fill="white"/><rect x="44" y="6" width="10" height="10" rx="1" fill="#111"/><rect x="2" y="40" width="18" height="18" rx="2" fill="#111"/><rect x="4" y="42" width="14" height="14" rx="1" fill="white"/><rect x="6" y="44" width="10" height="10" rx="1" fill="#111"/><rect x="24" y="2" width="4" height="4" fill="#111"/><rect x="30" y="2" width="4" height="4" fill="#111"/><rect x="24" y="8" width="4" height="6" fill="#111"/><rect x="24" y="24" width="36" height="4" fill="#111"/><rect x="24" y="32" width="4" height="4" fill="#111"/><rect x="30" y="32" width="4" height="4" fill="#111"/><rect x="36" y="30" width="4" height="12" fill="#111"/><rect x="42" y="24" width="4" height="8" fill="#111"/><rect x="48" y="24" width="8" height="4" fill="#111"/><rect x="24" y="40" width="4" height="4" fill="#111"/><rect x="30" y="44" width="4" height="8" fill="#111"/><rect x="42" y="40" width="4" height="10" fill="#111"/><rect x="48" y="40" width="8" height="4" fill="#111"/><rect x="48" y="46" width="8" height="8" fill="#111"/><rect x="2" y="24" width="4" height="4" fill="#111"/><rect x="8" y="24" width="6" height="4" fill="#111"/><rect x="2" y="30" width="6" height="4" fill="#111"/><rect x="10" y="30" width="8" height="10" fill="#111"/><rect x="2" y="36" width="4" height="6" fill="#111"/></svg></div>
-              <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:#FF5C00">drwup@upi</div>
+              <div style="background:#fff;border-radius:7px;padding:4px;width:68px;height:68px"><svg viewBox="0 0 60 60" width="60" height="60"><rect width="60" height="60" fill="white"/><rect x="2" y="2" width="18" height="18" rx="2" fill="#111"/><rect x="4" y="4" width="14" height="14" rx="1" fill="white"/><rect x="6" y="6" width="10" height="10" rx="1" fill="#111"/><rect x="40" y="2" width="18" height="18" rx="2" fill="#111"/><rect x="42" y="4" width="14" height="14" rx="1" fill="white"/><rect x="44" y="6" width="10" height="10" rx="1" fill="#111"/><rect x="2" y="40" width="18" height="18" rx="2" fill="#111"/><rect x="4" y="42" width="14" height="14" rx="1" fill="white"/><rect x="6" y="44" width="10" height="10" rx="1" fill="#111"/></svg></div>
+              <div style="font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:#FF5C00">raayhaangraphic@okicici</div>
               <div style="width:100%;background:#0a0a0a;border:1px solid #1e1e1e;border-radius:7px;padding:6px 9px;color:#555;font-size:8.5px">Enter Transaction ID...</div>
-              <div class="apkg-btn">Confirm Rs.1000</div>
+              <div class="apkg-btn">Confirm Payment</div>
               <div style="font-size:8px;color:#444;text-align:center">WhatsApp your Txn ID to confirm</div>
             </div>
           </div>
@@ -621,7 +630,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
           <div class="anim-state as-4">
             <div class="as-header" style="background:#075E54;gap:7px">
               <div class="wa-av"><svg width="16" height="16" viewBox="0 0 16 16" fill="white"><path d="M8 1C4.1 1 1 4.1 1 8c0 1.3.4 2.6 1 3.7L1 15l3.4-1C5.5 14.6 6.7 15 8 15c3.9 0 7-3.1 7-7S11.9 1 8 1z"/></svg></div>
-              <div><div style="color:white;font-size:10.5px;font-weight:700">drwup restore</div><div style="color:rgba(255,255,255,.65);font-size:8.5px">online</div></div>
+              <div><div style="color:white;font-size:10.5px;font-weight:700">Reframe AI</div><div style="color:rgba(255,255,255,.65);font-size:8.5px">online</div></div>
             </div>
             <div class="as-body" style="padding:8px">
               <div class="wa-bubble bot" style="--d:.05s">Your photo is restored! Here's the result:</div>
@@ -650,7 +659,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
       </div>
     </div>
     <div class="anim-steps-col">
-      <div class="anim-step" id="astep0"><div class="astep-num">01</div><div><div class="astep-title">Choose Your Package</div><div class="astep-desc">Pick from 1 Photo (Rs.99), 10 Photos (Rs.1000) or AI Reel (Rs.2500)</div></div></div>
+      <div class="anim-step" id="astep0"><div class="astep-num">01</div><div><div class="astep-title">Choose Your Package</div><div class="astep-desc">Pick from 1 Photo (Rs.49), 10 Photos (Rs.999) or AI Reel (Rs.3500)</div></div></div>
       <div class="anim-step" id="astep1"><div class="astep-num">02</div><div><div class="astep-title">Add Your Details</div><div class="astep-desc">Share your name, number and the old photo via WhatsApp or Drive link</div></div></div>
       <div class="anim-step" id="astep2"><div class="astep-num">03</div><div><div class="astep-title">Payment via UPI</div><div class="astep-desc">Pay via GPay / PhonePe / Paytm — then send your transaction ID on WhatsApp</div></div></div>
       <div class="anim-step" id="astep3"><div class="astep-num">04</div><div><div class="astep-title">See the Magic</div><div class="astep-desc">Your restored HD photo arrives on WhatsApp in 24–48 hours</div></div></div>
@@ -660,13 +669,13 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="s-reveal"><p class="section-label">Pricing</p><h2 class="section-title">Honest, Simple Pricing</h2><p class="section-sub">No hidden charges. No subscriptions. Pay once, get magic.</p></div>
+  <div class="s-reveal"><p class="section-label">Photo Restoration Pricing</p><h2 class="section-title">Honest, Simple Pricing</h2><p class="section-sub">No hidden charges. No subscriptions. Pay once, get magic.</p></div>
   <div class="pricing-grid s-stagger">
     <div class="price-card">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:38px;height:38px;background:rgba(255,92,0,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">&#128444;</div><div><div class="price-name">Single Photo</div><div class="price-desc" style="margin-bottom:0">Try us out — first restore</div></div></div>
       <div style="height:1px;background:rgba(255,255,255,.05);margin:14px 0"></div>
-      <div class="price-tag-wrap"><span class="price-curr">Rs.</span><span class="price-amount">99</span></div>
-      <div class="price-save" style="color:#888">Rs.150 per image from 2nd order</div>
+      <div class="price-tag-wrap"><span class="price-curr">Rs.</span><span class="price-amount">49</span></div>
+      <div class="price-save" style="color:#888">Per photo from 2nd order onwards</div>
       <ul class="price-features"><li>1 damaged photo fully restored</li><li>Scratches, fading and tears removed</li><li>High-resolution output file</li><li>WhatsApp delivery</li><li>24–48 hour turnaround</li></ul>
       <button class="price-btn price-btn-secondary" onclick="selectPkg('single')">Get Started</button>
     </div>
@@ -674,19 +683,64 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
       <div class="price-ribbon">Most Popular</div>
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:38px;height:38px;background:rgba(255,92,0,.18);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">&#128247;</div><div><div class="price-name">10 Photos Pack</div><div class="price-desc" style="margin-bottom:0">Best value — restore an album</div></div></div>
       <div style="height:1px;background:rgba(255,92,0,.18);margin:14px 0"></div>
-      <div class="price-tag-wrap"><span class="price-curr">Rs.</span><span class="price-amount">1000</span><span class="price-old">Rs.1500</span></div>
+      <div class="price-tag-wrap"><span class="price-curr">Rs.</span><span class="price-amount">999</span><span class="price-old">Rs.1499</span></div>
       <div class="price-save" style="color:#56d364">You save Rs.500 on this pack</div>
       <ul class="price-features"><li>10 photos completely restored</li><li>Full damage repair on each</li><li>Colour correction and enhancement</li><li>High-res files for all 10</li><li>Priority processing queue</li></ul>
       <button class="price-btn price-btn-primary" onclick="selectPkg('pack10')">Order Pack</button>
     </div>
     <div class="price-card">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:38px;height:38px;background:rgba(255,92,0,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">&#127909;</div><div><div class="price-name">AI Reel / Video</div><div class="price-desc" style="margin-bottom:0">Cinematic 25-sec memory video</div></div></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:38px;height:38px;background:rgba(255,92,0,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">&#127776;</div><div><div class="price-name">Bulk / Custom</div><div class="price-desc" style="margin-bottom:0">Large albums & special requests</div></div></div>
       <div style="height:1px;background:rgba(255,255,255,.05);margin:14px 0"></div>
-      <div class="price-tag-wrap"><span class="price-curr">Rs.</span><span class="price-amount">2500</span><span class="price-old">Rs.3000</span></div>
-      <div class="price-save" style="color:#56d364">Save Rs.500 — limited time</div>
-      <ul class="price-features"><li>25-second AI animated video</li><li>Reel / memory moment style</li><li>Background music included</li><li>MP4 and WhatsApp ready</li><li>3–5 business day delivery</li></ul>
-      <button class="price-btn price-btn-secondary" onclick="selectPkg('reel')">Order Reel</button>
+      <div class="price-tag-wrap"><span style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--orange);line-height:1;align-self:center">Custom</span></div>
+      <div class="price-save" style="color:#888">WhatsApp us for a quote</div>
+      <ul class="price-features"><li>20+ photos or large albums</li><li>Special restoration requirements</li><li>Colour correction and enhancement</li><li>Dedicated processing priority</li><li>Tailored delivery timeline</li></ul>
+      <button class="price-btn price-btn-secondary" onclick="window.open('https://wa.me/919137194671','_blank')">WhatsApp Us</button>
     </div>
+  </div>
+</section>
+
+<!-- AI REELS SECTION -->
+<section id="reels">
+  <div class="s-reveal">
+    <p class="section-label">AI Reel Videos</p>
+    <h2 class="section-title">Cinematic Memory Reels</h2>
+    <p class="section-sub">Turn your old photos into stunning 25-second AI animated reels — perfect for Instagram, family gatherings or gifting a moment back in time.</p>
+  </div>
+  <div class="reels-grid s-stagger">
+    <div class="reel-card">
+      <div class="reel-icon-wrap">&#127916;</div>
+      <div class="reel-name">Single Reel</div>
+      <div class="reel-desc">One cinematic 25-second AI memory reel. Perfect for birthdays, anniversaries, or a precious one-of-a-kind moment.</div>
+      <div class="reel-price-wrap"><span class="reel-curr">Rs.</span><span class="reel-amount">3500</span></div>
+      <ul class="reel-features">
+        <li>25-second AI animated video</li>
+        <li>Reel / memory moment style</li>
+        <li>Background music included</li>
+        <li>MP4 and WhatsApp ready</li>
+        <li>3–5 business day delivery</li>
+        <li>1 revision included</li>
+      </ul>
+      <button class="reel-btn reel-btn-secondary" onclick="selectPkg('reel1')">Order Single Reel</button>
+    </div>
+    <div class="reel-card reel-featured" style="padding-top:38px">
+      <div class="reel-ribbon">Best Value</div>
+      <div class="reel-icon-wrap" style="background:rgba(255,92,0,.18)">&#127909;</div>
+      <div class="reel-name">3 Reels Pack</div>
+      <div class="reel-desc">Three cinematic reels — share multiple memories with family, or create a complete photo-story for a special event.</div>
+      <div class="reel-price-wrap"><span class="reel-curr">Rs.</span><span class="reel-amount">7500</span><span style="font-size:15px;color:#444;text-decoration:line-through;margin-left:8px;align-self:flex-end;padding-bottom:8px">Rs.10500</span></div>
+      <ul class="reel-features">
+        <li>3 × 25-second AI animated videos</li>
+        <li>Unique style per reel</li>
+        <li>Background music on each</li>
+        <li>MP4 and WhatsApp ready</li>
+        <li>Priority 3–5 day delivery</li>
+        <li>Up to 2 revisions per reel</li>
+      </ul>
+      <button class="reel-btn reel-btn-primary" onclick="selectPkg('reel3')">Order 3 Reels Pack</button>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:32px;s-reveal">
+    <p style="color:#555;font-size:13.5px">Want more reels or a custom package? <a href="https://wa.me/919137194671" target="_blank" style="color:var(--orange);font-weight:700;text-decoration:none">WhatsApp us &#8594;</a></p>
   </div>
 </section>
 
@@ -699,27 +753,12 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   </div>
   <div class="payment-wrap s-reveal-scale">
     <div class="payment-card">
-      <!-- QR CODE — replace src with your actual QR image URL -->
       <div class="qr-container">
-        <div class="qr-corner qr-tl"></div>
-        <div class="qr-corner qr-tr"></div>
-        <div class="qr-corner qr-bl"></div>
-        <div class="qr-corner qr-br"></div>
-        <div class="qr-scan-anim"></div>
-        <!-- 
-          REPLACE THE src BELOW WITH YOUR ACTUAL PAYMENT QR CODE IMAGE URL.
-          Example: src="https://your-host.com/your-upi-qr.png"
-          You can generate a UPI QR at: https://upitools.in or your bank's app.
-        -->
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=drwup@upi%26pn=drwup%20restore%26cu=INR" alt="UPI QR Code — drwup@upi" onerror="this.style.display='none';document.getElementById('qr-fallback').style.display='flex'">
-        <div id="qr-fallback" style="display:none;width:200px;height:200px;background:#f5f5f5;border-radius:8px;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="2" y="2" width="20" height="20" rx="3" fill="#FF5C00" opacity=".15" stroke="#FF5C00" stroke-width="2"/><rect x="6" y="6" width="12" height="12" rx="1" fill="#FF5C00" opacity=".3"/><rect x="26" y="2" width="20" height="20" rx="3" fill="#FF5C00" opacity=".15" stroke="#FF5C00" stroke-width="2"/><rect x="30" y="6" width="12" height="12" rx="1" fill="#FF5C00" opacity=".3"/><rect x="2" y="26" width="20" height="20" rx="3" fill="#FF5C00" opacity=".15" stroke="#FF5C00" stroke-width="2"/><rect x="6" y="30" width="12" height="12" rx="1" fill="#FF5C00" opacity=".3"/><rect x="26" y="26" width="6" height="6" fill="#FF5C00" opacity=".5"/><rect x="34" y="26" width="6" height="6" fill="#FF5C00" opacity=".5"/><rect x="26" y="34" width="6" height="6" fill="#FF5C00" opacity=".5"/><rect x="34" y="34" width="6" height="6" fill="#FF5C00" opacity=".5"/></svg>
-          <span style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:#FF5C00;text-align:center">drwup@upi</span>
-        </div>
+        <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/PAYMENT_QR_CODE.jpg?v=1780472625" alt="UPI QR Code — raayhaangraphic@okicici" style="width:200px;height:200px;display:block;border-radius:8px">
       </div>
 
       <div>
-        <div class="payment-upi-id">drwup@upi</div>
+        <div class="payment-upi-id">raayhaangraphic@okicici</div>
         <div class="payment-upi-sub">Scan or copy UPI ID to pay</div>
       </div>
 
@@ -744,7 +783,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 
       <div class="payment-steps">
         <div class="pstep"><div class="pstep-num">1</div><span>Open GPay / PhonePe / Paytm or your bank's UPI app</span></div>
-        <div class="pstep"><div class="pstep-num">2</div><span>Scan the QR code above or enter UPI ID: <strong style="color:var(--orange)">drwup@upi</strong></span></div>
+        <div class="pstep"><div class="pstep-num">2</div><span>Scan the QR code above or enter UPI ID: <strong style="color:var(--orange)">raayhaangraphic@okicici</strong></span></div>
         <div class="pstep"><div class="pstep-num">3</div><span>Enter the amount as per your chosen package and complete the payment</span></div>
         <div class="pstep"><div class="pstep-num">4</div><span><strong style="color:var(--white)">Copy your Transaction ID</strong> — you'll need it in the order form below</span></div>
       </div>
@@ -762,14 +801,19 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   <div class="order-wrap s-reveal-scale">
     <div class="upi-info">
       <div style="font-size:26px">&#128179;</div>
-      <div><div style="font-size:12px;color:#888;margin-bottom:3px">Pay via UPI before submitting</div><div class="upi-id">drwup@upi</div><div style="font-size:11px;color:#444;margin-top:2px">Then paste your Transaction ID below</div></div>
+      <div><div style="font-size:12px;color:#888;margin-bottom:3px">Pay via UPI before submitting</div><div class="upi-id">raayhaangraphic@okicici</div><div style="font-size:11px;color:#444;margin-top:2px">Then paste your Transaction ID below</div></div>
     </div>
     <div class="form-row"><label class="form-label">Select Package</label>
       <div class="pkg-options" id="pkgOptions">
-        <div class="pkg-opt" onclick="selectPkg('single')" id="pkg-single"><span class="pkg-opt-name">1 Photo</span><span class="pkg-opt-price">Rs.99</span><div class="pkg-opt-sub">First restore</div></div>
-        <div class="pkg-opt" onclick="selectPkg('pack10')" id="pkg-pack10"><span class="pkg-opt-name">10 Photos</span><span class="pkg-opt-price">Rs.1000</span><div class="pkg-opt-sub">Save Rs.500</div></div>
-        <div class="pkg-opt" onclick="selectPkg('reel')" id="pkg-reel"><span class="pkg-opt-name">AI Reel</span><span class="pkg-opt-price">Rs.2500</span><div class="pkg-opt-sub">25-sec video</div></div>
-      </div><input type="hidden" id="selectedPkg" value="">
+        <div class="pkg-opt" onclick="selectPkg('single')" id="pkg-single"><span class="pkg-opt-name">1 Photo</span><span class="pkg-opt-price">Rs.49</span><div class="pkg-opt-sub">First restore</div></div>
+        <div class="pkg-opt" onclick="selectPkg('pack10')" id="pkg-pack10"><span class="pkg-opt-name">10 Photos</span><span class="pkg-opt-price">Rs.999</span><div class="pkg-opt-sub">Save Rs.500</div></div>
+        <div class="pkg-opt" onclick="selectPkg('custom')" id="pkg-custom"><span class="pkg-opt-name">Bulk / Custom</span><span class="pkg-opt-price" style="font-size:14px">Custom</span><div class="pkg-opt-sub">WhatsApp us</div></div>
+      </div>
+      <div class="pkg-options-wide" style="margin-top:10px">
+        <div class="pkg-opt" onclick="selectPkg('reel1')" id="pkg-reel1"><span class="pkg-opt-name">&#127916; Single Reel</span><span class="pkg-opt-price">Rs.3500</span><div class="pkg-opt-sub">25-sec AI video</div></div>
+        <div class="pkg-opt" onclick="selectPkg('reel3')" id="pkg-reel3"><span class="pkg-opt-name">&#127909; 3 Reels Pack</span><span class="pkg-opt-price">Rs.7500</span><div class="pkg-opt-sub">Save Rs.3000</div></div>
+      </div>
+      <input type="hidden" id="selectedPkg" value="">
     </div>
     <div class="form-row"><label class="form-label">Your Full Name</label><input class="form-input" type="text" id="custName" placeholder="e.g. Rahul Sharma"></div>
     <div class="form-row"><label class="form-label">WhatsApp Number</label><input class="form-input" type="tel" id="custWA" placeholder="+91 98765 43210"></div>
@@ -783,7 +827,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
     <button class="submit-btn" onclick="submitOrder()">Place My Order &#10148;</button>
     <div style="text-align:center;margin-top:14px;font-size:12.5px;color:#444">
       Questions? WhatsApp us directly at 
-      <a href="https://wa.me/919987876738" target="_blank" style="color:var(--orange);font-weight:700;text-decoration:none">+91 99878 76738</a>
+      <a href="https://wa.me/919137194671" target="_blank" style="color:var(--orange);font-weight:700;text-decoration:none">+91 91371 94671</a>
     </div>
   </div>
 </section>
@@ -797,7 +841,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 <!-- CHATBOX -->
 <button id="chatbox-btn" onclick="toggleChat()">&#128172;</button>
 <div id="chatbox">
-  <div class="chat-header"><div class="chat-avatar">&#129302;</div><div><div class="chat-title">drwup Assistant</div><div class="chat-status">Online — replies instantly</div></div></div>
+  <div class="chat-header"><div class="chat-avatar">&#129302;</div><div><div class="chat-title">Reframe AI Assistant</div><div class="chat-status">Online — replies instantly</div></div></div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-quick" id="chatQuick">
     <button class="chat-quick-btn" onclick="quickMsg('How does it work?')">How it works?</button>
@@ -816,7 +860,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
     <div class="modal-sub" id="modalSub">We've received your order. We'll confirm via WhatsApp within 30 minutes!</div>
     <button class="modal-close" onclick="closeModal()">Awesome, Thanks!</button>
     <div style="margin-top:14px">
-      <a href="https://wa.me/919987876738" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);border-radius:50px;padding:10px 22px;color:#25D366;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;text-decoration:none">
+      <a href="https://wa.me/919137194671" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.25);border-radius:50px;padding:10px 22px;color:#25D366;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;text-decoration:none">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="#25D366"><path d="M8 1C4.1 1 1 4.1 1 8c0 1.3.4 2.6 1 3.7L1 15l3.4-1C5.5 14.6 6.7 15 8 15c3.9 0 7-3.1 7-7S11.9 1 8 1z"/></svg>
         Chat on WhatsApp
       </a>
@@ -829,10 +873,13 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   <div class="footer-main">
     <div>
       <a href="#" class="footer-logo">
-        <svg width="26" height="26" viewBox="0 0 28 28" fill="none"><rect x="2" y="4" width="20" height="22" rx="3" fill="#141414" stroke="#FF5C00" stroke-width="1.4"/><line x1="2" y1="12" x2="22" y2="13.5" stroke="rgba(255,92,0,.28)" stroke-width="1"/><circle cx="7" cy="9" r="2" fill="#FF5C00" opacity=".35"/><line x1="19" y1="19" x2="27" y2="27" stroke="#FF5C00" stroke-width="2.2" stroke-linecap="round"/><circle cx="19" cy="19" r="3" fill="#FF5C00"/><path d="M19,13 L20,16.4 L23.4,17.5 L20,18.6 L19,22 L18,18.6 L14.6,17.5 L18,16.4Z" fill="#FF8A3D" opacity=".9"/></svg>
-        drwup <span>restore</span>
+        <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/REFRAME_AI.png?v=1780472325" alt="Reframe AI Logo">
       </a>
       <p class="footer-tagline">We bring your old, damaged and faded photographs back to life using AI. Fast, affordable, delivered on WhatsApp.</p>
+      <a href="https://www.instagram.com/drwup.studio?igsh=MTdmNmRyMmJiamh4ZA==" target="_blank" class="insta-link">
+        <svg class="insta-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#FF5C00" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="#FF5C00" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1.2" fill="#FF5C00"/></svg>
+        @drwup.studio
+      </a>
     </div>
     <div>
       <div class="footer-col-title">Quick Links</div>
@@ -840,20 +887,21 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
         <a href="#magic">The Magic</a>
         <a href="#process">How It Works</a>
         <a href="#pricing">Pricing</a>
+        <a href="#reels">AI Reels</a>
         <a href="#testimonials">Reviews</a>
         <a href="#order">Order Now</a>
       </div>
     </div>
     <div>
       <div class="footer-col-title">Contact Us</div>
-      <div class="footer-contact-item"><div class="footer-contact-icon">&#128172;</div><div><div class="footer-contact-label">WhatsApp</div><div class="footer-contact-text"><a href="https://wa.me/919987876738" target="_blank" style="color:#25D366;text-decoration:none">+91 99878 76738</a></div></div></div>
-      <div class="footer-contact-item"><div class="footer-contact-icon">&#128179;</div><div><div class="footer-contact-label">UPI Payment</div><div class="footer-contact-text" style="color:var(--orange);font-family:'Syne',sans-serif;font-weight:700">drwup@upi</div></div></div>
+      <div class="footer-contact-item"><div class="footer-contact-icon">&#128172;</div><div><div class="footer-contact-label">WhatsApp</div><div class="footer-contact-text"><a href="https://wa.me/919137194671" target="_blank" style="color:#25D366;text-decoration:none">+91 91371 94671</a></div></div></div>
+      <div class="footer-contact-item"><div class="footer-contact-icon">&#128179;</div><div><div class="footer-contact-label">UPI Payment</div><div class="footer-contact-text" style="color:var(--orange);font-family:'Syne',sans-serif;font-weight:700;font-size:12px">raayhaangraphic@okicici</div></div></div>
       <div class="footer-contact-item"><div class="footer-contact-icon">&#9203;</div><div><div class="footer-contact-label">Delivery Time</div><div class="footer-contact-text">Photos: 24–48 hrs | AI Reel: 3–5 days</div></div></div>
       <div class="footer-contact-item"><div class="footer-contact-icon">&#128205;</div><div><div class="footer-contact-label">Based in</div><div class="footer-contact-text">India — Serving nationwide</div></div></div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 <span>drwup restore</span>. All rights reserved. Made with love in India.</p>
+    <p class="footer-copy">© 2025 <span>Reframe AI</span>. All rights reserved. Made with love in India.</p>
     <div class="footer-badges">
       <div class="footer-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#56d364" stroke-width="1.2"/><path d="M3.5 6l1.8 1.8 3.2-3.2" stroke="#56d364" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>2400+ Restored</div>
       <div class="footer-badge"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1l1.2 3.6H11L8.1 6.8l1.1 3.4L6 8.2 2.9 10.2 4 6.8 1 4.6h3.8z" fill="#FF5C00" opacity=".7"/></svg>98% Satisfaction</div>
@@ -868,7 +916,7 @@ const cur=document.getElementById('cursor'),ring=document.getElementById('cursor
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
 (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
-document.querySelectorAll('a,button,.pkg-opt,.price-card,.testi-card').forEach(el=>{
+document.querySelectorAll('a,button,.pkg-opt,.price-card,.testi-card,.reel-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='22px';cur.style.height='22px';ring.style.width='48px';ring.style.height='48px';ring.style.opacity='.7'});
   el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='34px';ring.style.height='34px';ring.style.opacity='.4'});
 });
@@ -897,7 +945,7 @@ for(let i=0;i<16;i++){const p=document.createElement('div');p.className='particl
 })();
 
 // MARQUEE
-const mI=['Photo Restoration','AI Magic','Old Photos Revived','Starting Rs.99','WhatsApp Easy','24hr Delivery','Scratch Removal','Colour Repair','AI Reel','2400+ Happy Customers','Zero Tech Needed','Memory Magic','India\'s Favourite'];
+const mI=['Photo Restoration','AI Magic','Old Photos Revived','Starting Rs.49','WhatsApp Easy','24hr Delivery','Scratch Removal','Colour Repair','AI Reel Videos','2400+ Happy Customers','Zero Tech Needed','Memory Magic','India\'s Favourite','Reframe AI'];
 const mT=document.getElementById('marqueeTrack');
 [...mI,...mI].forEach(t=>{mT.innerHTML+=`<div class="marquee-item"><div class="marquee-dot"></div>${t}</div>`});
 
@@ -917,9 +965,15 @@ document.addEventListener('touchmove',e=>{if(drag)setSlider(e.touches[0].clientX
 document.addEventListener('touchend',()=>{if(drag){drag=false;setTimeout(()=>{autoRun=true;(function al(){if(!autoRun)return;aPos+=aDir*.22;if(aPos>76)aDir=-1;if(aPos<14)aDir=1;applyPos(aPos);requestAnimationFrame(al)})()},2500)}});
 
 // PACKAGE SELECT
-function selectPkg(pkg){document.querySelectorAll('.pkg-opt').forEach(o=>o.classList.remove('active'));const el=document.getElementById('pkg-'+pkg);if(el)el.classList.add('active');document.getElementById('selectedPkg').value=pkg;document.getElementById('order').scrollIntoView({behavior:'smooth',block:'start'})}
+function selectPkg(pkg){
+  document.querySelectorAll('.pkg-opt').forEach(o=>o.classList.remove('active'));
+  const el=document.getElementById('pkg-'+pkg);
+  if(el)el.classList.add('active');
+  document.getElementById('selectedPkg').value=pkg;
+  document.getElementById('order').scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-// ORDER SUBMIT — sends to WhatsApp
+// ORDER SUBMIT
 function submitOrder(){
   const name=document.getElementById('custName').value.trim();
   const wa=document.getElementById('custWA').value.trim();
@@ -928,9 +982,9 @@ function submitOrder(){
   const link=document.getElementById('photoLink').value.trim();
   const notes=document.getElementById('notes').value.trim();
   if(!name||!wa||!pkg||!txn){alert('Please fill in Name, WhatsApp Number, Package, and Transaction ID.');return;}
-  const names={'single':'1 Photo Restore (Rs.99)','pack10':'10 Photo Pack (Rs.1000)','reel':'AI Reel Video (Rs.2500)'};
-  const msg=`*New Order — drwup restore*\n\n*Name:* ${name}\n*WhatsApp:* ${wa}\n*Package:* ${names[pkg]||pkg}\n*Transaction ID:* ${txn}\n*Photo Link:* ${link||'Will send directly'}\n*Notes:* ${notes||'None'}`;
-  const waUrl=`https://wa.me/919987876738?text=${encodeURIComponent(msg)}`;
+  const names={'single':'1 Photo Restore (Rs.49)','pack10':'10 Photo Pack (Rs.999)','custom':'Bulk / Custom','reel1':'Single AI Reel (Rs.3500)','reel3':'3 Reels Pack (Rs.7500)'};
+  const msg=`*New Order — Reframe AI*\n\n*Name:* ${name}\n*WhatsApp:* ${wa}\n*Package:* ${names[pkg]||pkg}\n*Transaction ID:* ${txn}\n*Photo Link:* ${link||'Will send directly'}\n*Notes:* ${notes||'None'}`;
+  const waUrl=`https://wa.me/919137194671?text=${encodeURIComponent(msg)}`;
   document.getElementById('modalSub').textContent=`Hi ${name}! Your order for ${names[pkg]||pkg} has been received. We will WhatsApp you on ${wa} within 30 minutes. Txn: ${txn}`;
   document.getElementById('modal').classList.add('show');
   setTimeout(()=>window.open(waUrl,'_blank'),800);
@@ -938,19 +992,19 @@ function submitOrder(){
 function closeModal(){document.getElementById('modal').classList.remove('show')}
 
 // TESTIMONIALS
-const testis=[{n:"Priya Mehta",l:"Mumbai",t:"I gave them a 50-year-old torn photo of my grandparents. What they returned made me cry — it looked like it was taken yesterday!",i:"PM",c:"#D35400"},{n:"Rohit Sharma",l:"Delhi",t:"Ordered the 10-photo pack for my parents anniversary. Scratches, fading, everything — gone. Worth every single rupee.",i:"RS",c:"#1A5276"},{n:"Kavya Nair",l:"Bengaluru",t:"The AI reel from my dad's old photo made the whole family emotional. My mom played it on loop at the gathering. Pure magic!",i:"KN",c:"#1E8449"},{n:"Ankit Joshi",l:"Pune",t:"Super easy. WhatsApp, UPI, done. Got my photo back in under 24 hours. Quality is unreal — they even fixed the colour cast!",i:"AJ",c:"#7D3C98"},{n:"Shreya Patel",l:"Surat",t:"My grandmother's 1965 wedding photo was barely visible. They restored it to HD with proper colours. I framed it for her 80th birthday!",i:"SP",c:"#C0392B"},{n:"Mohammed Raza",l:"Hyderabad",t:"Fastest service ever. Ordered at night, results by morning. The photo of my father I thought was lost is now crystal clear.",i:"MR",c:"#117A65"},{n:"Deepika Singh",l:"Jaipur",t:"Did not expect this quality for Rs.99. First restore blew my mind. Immediately ordered the 10-photo pack. Great customer support!",i:"DS",c:"#873600"},{n:"Arjun Verma",l:"Chennai",t:"The reel from my grandfather's black and white photo was cinematic. Background music, smooth animation — felt like a professional production!",i:"AV",c:"#1F618D"}];
+const testis=[{n:"Priya Mehta",l:"Mumbai",t:"I gave them a 50-year-old torn photo of my grandparents. What they returned made me cry — it looked like it was taken yesterday!",i:"PM",c:"#D35400"},{n:"Rohit Sharma",l:"Delhi",t:"Ordered the 10-photo pack for my parents anniversary. Scratches, fading, everything — gone. Worth every single rupee.",i:"RS",c:"#1A5276"},{n:"Kavya Nair",l:"Bengaluru",t:"The AI reel from my dad's old photo made the whole family emotional. My mom played it on loop at the gathering. Pure magic!",i:"KN",c:"#1E8449"},{n:"Ankit Joshi",l:"Pune",t:"Super easy. WhatsApp, UPI, done. Got my photo back in under 24 hours. Quality is unreal — they even fixed the colour cast!",i:"AJ",c:"#7D3C98"},{n:"Shreya Patel",l:"Surat",t:"My grandmother's 1965 wedding photo was barely visible. They restored it to HD with proper colours. I framed it for her 80th birthday!",i:"SP",c:"#C0392B"},{n:"Mohammed Raza",l:"Hyderabad",t:"Fastest service ever. Ordered at night, results by morning. The photo of my father I thought was lost is now crystal clear.",i:"MR",c:"#117A65"},{n:"Deepika Singh",l:"Jaipur",t:"Did not expect this quality for Rs.49. First restore blew my mind. Immediately ordered the 10-photo pack. Great customer support!",i:"DS",c:"#873600"},{n:"Arjun Verma",l:"Chennai",t:"The reel from my grandfather's black and white photo was cinematic. Background music, smooth animation — felt like a professional production!",i:"AV",c:"#1F618D"}];
 const tT=document.getElementById('testiTrack');
 [...testis,...testis].forEach(t=>{tT.innerHTML+=`<div class="testi-card"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-text">"${t.t}"</p><div class="testi-author"><div class="testi-avatar" style="background:${t.c}">${t.i}</div><div><div class="testi-name">${t.n}</div><div class="testi-loc">${t.l}</div></div></div></div>`});
 
 // CHATBOT
-const replies={'how does it work':'Send your old photo on WhatsApp or via Google Drive. Pick a package, pay via UPI, share your transaction ID. We restore with AI and deliver in 24-48 hours!','price':'3 packages: 1 Photo: Rs.99 | 10 Photos: Rs.1000 (save Rs.500) | AI Reel: Rs.2500','pricing':'3 packages: 1 Photo: Rs.99 | 10 Photos: Rs.1000 | AI Reel: Rs.2500','how long':'1 Photo and 10 Photo orders: 24-48 hours. AI Reel: 3-5 days. We try to deliver faster!','turnaround':'24-48 hours for photo orders. 3-5 days for AI Reel.','send photo':'Share a Google Drive link in the order form, or send directly on WhatsApp at +91 99878 76738 after ordering!','how do i send':'Google Drive link in the order form, or send on WhatsApp directly after ordering.','refund':'We offer a free redo if you are not satisfied with your first restore. Your memories matter!','upi':'Our UPI ID is drwup@upi. Pay via GPay, PhonePe, or Paytm and share the transaction ID.','whatsapp':'You can reach us on WhatsApp at +91 99878 76738 — we reply fast!'};
-const defR="Thanks for asking! You can also WhatsApp us at +91 99878 76738 after placing an order.";
+const replies={'how does it work':'Send your old photo on WhatsApp or via Google Drive. Pick a package, pay via UPI, share your transaction ID. We restore with AI and deliver in 24-48 hours!','price':'Photo packages: 1 Photo: Rs.49 | 10 Photos: Rs.999 | AI Reels: Rs.3500 (Single) / Rs.7500 (3 Pack)','pricing':'Photo packages: 1 Photo: Rs.49 | 10 Photos: Rs.999 | AI Reels: Rs.3500 / Rs.7500','how long':'Photos: 24-48 hours. AI Reel: 3-5 days. We try to deliver faster!','turnaround':'24-48 hours for photo orders. 3-5 days for AI Reels.','send photo':'Share a Google Drive link in the order form, or send directly on WhatsApp at +91 91371 94671 after ordering!','how do i send':'Google Drive link in the order form, or send on WhatsApp directly after ordering.','refund':'We offer a free redo if you are not satisfied with your first restore. Your memories matter!','upi':'Our UPI ID is raayhaangraphic@okicici. Pay via GPay, PhonePe, or Paytm and share the transaction ID.','whatsapp':'You can reach us on WhatsApp at +91 91371 94671 — we reply fast!','reel':'AI Reels are cinematic 25-second animated videos from your old photos. Single Reel: Rs.3500, 3 Reels Pack: Rs.7500!'};
+const defR="Thanks for asking! You can also WhatsApp us at +91 91371 94671 after placing an order.";
 let chatOpen=false,chatInited=false;
 function addMsg(txt,type){const d=document.getElementById('chatMessages');const m=document.createElement('div');m.className=`chat-msg ${type}`;m.style.whiteSpace='pre-line';m.textContent=txt;d.appendChild(m);d.scrollTop=d.scrollHeight}
 function showTyping(){const d=document.getElementById('chatMessages');const t=document.createElement('div');t.className='chat-typing';t.id='cT';t.innerHTML='<span></span><span></span><span></span>';d.appendChild(t);d.scrollTop=d.scrollHeight}
 function rmTyping(){const t=document.getElementById('cT');if(t)t.remove()}
 function botReply(inp){const low=inp.toLowerCase();let rep=defR;for(const k of Object.keys(replies)){if(low.includes(k)){rep=replies[k];break}}showTyping();setTimeout(()=>{rmTyping();addMsg(rep,'bot')},800+Math.random()*500)}
-function toggleChat(){chatOpen=!chatOpen;document.getElementById('chatbox').classList.toggle('open',chatOpen);if(chatOpen&&!chatInited){chatInited=true;setTimeout(()=>addMsg('Hi! Welcome to drwup restore.\n\nHow can I help you restore your memories today?','bot'),300)}}
+function toggleChat(){chatOpen=!chatOpen;document.getElementById('chatbox').classList.toggle('open',chatOpen);if(chatOpen&&!chatInited){chatInited=true;setTimeout(()=>addMsg('Hi! Welcome to Reframe AI.\n\nHow can I help you restore your memories today?','bot'),300)}}
 function sendChat(){const inp=document.getElementById('chatInput');const v=inp.value.trim();if(!v)return;addMsg(v,'user');inp.value='';botReply(v)}
 function quickMsg(m){addMsg(m,'user');botReply(m);document.getElementById('chatQuick').style.display='none'}
 
