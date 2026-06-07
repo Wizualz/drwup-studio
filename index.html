@@ -275,10 +275,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:fl
 @keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* CHATBOX */
-#chatbox-btn{position:fixed;bottom:28px;right:28px;z-index:200;width:54px;height:54px;background:transparent;border-radius:0;border:none;cursor:pointer;box-shadow:none;display:flex;align-items:center;justify-content:center;transition:all .25s;animation:chatPop 3.5s ease-in-out infinite;padding:0;overflow:visible}
+#chatbox-btn{position:fixed;bottom:28px;right:28px;z-index:200;width:54px;height:54px;background:var(--orange);border-radius:50%;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(255,92,0,.45);display:flex;align-items:center;justify-content:center;transition:all .25s;animation:chatPop 3.5s ease-in-out infinite;padding:0;overflow:hidden}
 @keyframes chatPop{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
 #chatbox-btn:hover{transform:scale(1.12)!important;box-shadow:0 12px 40px rgba(255,92,0,.65)}
-#chatbox-btn img{width:54px;height:54px;object-fit:contain;display:block}
+#chatbox-btn img{width:30px;height:30px;object-fit:contain;display:block}
 #chatbox{position:fixed;bottom:96px;right:28px;z-index:200;width:314px;background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transform:scale(.9) translateY(12px);opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 28px 80px rgba(0,0,0,.7)}
 #chatbox.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
 .chat-header{background:linear-gradient(135deg,#c44200,var(--orange));padding:14px 18px;display:flex;align-items:center;gap:10px}
@@ -417,7 +417,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
   .form-input{font-size:16px}
   #testimonials{padding:56px 0}
   .testi-card{width:255px;padding:16px}
-  #chatbox-btn{right:14px!important;bottom:18px!important;width:50px!important;height:50px!important;background:transparent!important;box-shadow:none!important;border-radius:0!important}
+  #chatbox-btn{right:14px!important;bottom:18px!important;width:50px!important;height:50px!important}
   #chatbox{right:12px!important;width:calc(100vw - 24px)!important;max-width:340px!important}
   .footer-main{grid-template-columns:1fr!important;gap:28px;padding:36px 20px 0}
   .footer-bottom{padding:18px 20px;flex-direction:column;text-align:center;gap:12px}
@@ -841,7 +841,7 @@ footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(
 
 <!-- CHATBOX BUTTON — updated icon -->
 <button id="chatbox-btn" onclick="toggleChat()">
-  <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/Blue_and_White_Minimalistic_Eid_Al-Adha_Greeting_Message_Instagram_Post_4.png?v=1780820005" alt="Chat">
+  <img src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/CHAT_ICON_32170760-df66-4ad6-b6b9-a5239554f737.png?v=1780818142" alt="Chat" style="width:30px;height:30px;object-fit:contain;display:block">
 </button>
 
 <div id="chatbox">
